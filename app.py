@@ -1,6 +1,7 @@
 from flask import Flask
 from models.db import db
 from config.config import DATABASE_CONNECTION_URI
+#from routes.routes import routes_blueprint 
 
 app = Flask(__name__)
 
