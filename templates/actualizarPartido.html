@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Partido</title>
+{% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('partido.actualizar_partido', id=partido.id) }}" method="post">
+
+    <label for="equipo1_id">ID Equipo 1:</label>
+    <input
+        type="text"
+        id="equipo1_id"
+        name="nombre_equipo1"
+        value="{{ partido.nombre_equipo1 }}"
+    >
+
+    <br><br>
+
+    <label for="equipo2_id">ID Equipo 2:</label>
+    <input
+        type="text"
+        id="equipo2_id"
+        name="nombre_equipo2"
+        value="{{ partido.nombre_equipo2 }}"
+    >
+
+    <br><br>
+
+    <label for="idestadio">ID Estadio:</label>
+    <input
+        type="text"
+        id="idestadio"
+        name="idestadio"
+        value="{{ partido.idestadio }}"
+    >
+    <br><br>
+
+    <label for="fecha">Fecha:</label>
+    <input
+        type="text"
+        id="fecha"
+        name="fecha"
+        value="{{ partido.fecha }}"
+    >
+    <br><br>
+
+    <label for="hora">Hora:</label> 
+    <input
+        type="text"
+        id="hora"
+        name="hora"
+        value="{{ partido.hora }}"
+    >
+    <br><br>
+    <label for="estado">Estado:</label>
+    <input
+        type="text"
+        id="estado"
+        name="estado"
+        value="{{ partido.estado }}"
+    >
+    <br><br>
+    <label for="etapa">Etapa:</label>
+    <input
+        type="text"
+        id="etapa"
+        name="etapa"
+        value="{{ partido.etapa }}"
+    >
+    <br><br>
+    <button type="submit">Guardar cambios</button>
+{% endblock %}

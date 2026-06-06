@@ -1,0 +1,82 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+.tabla-partidos{
+    width:95%;
+    margin:30px auto;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tabla-partidos caption{
+    background:#001f3f;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:1.5em;
+    font-weight:bold;
+}
+
+.tabla-partidos td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+.tabla-partidos tr:hover{
+    background:#f5f5f5;
+}
+
+.btn-editar,
+.btn-eliminar{
+    padding:8px 12px;
+    text-decoration:none;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    margin:0 3px;
+}
+
+.btn-editar{
+    background:#2563eb;
+}
+
+.btn-editar:hover{
+    background:#1d4ed8;
+}
+
+.btn-eliminar{
+    background:#e31b23;
+}
+
+.btn-eliminar:hover{
+    background:#a31717;
+}
+
+.btn-agregar{
+    display:block;
+    margin:20px auto;
+    padding:10px 20px;
+    background:#75c2ff;
+    color:#001f3f;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+    text-align:center;
+    width:fit-content;
+}
+
+.btn-agregar:hover{
+    background:#235a7e;
+}
+    
+h1{
+    text-align:center;
+    color:#001f3f;
+    margin-top:20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
