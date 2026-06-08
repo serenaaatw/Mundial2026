@@ -4,6 +4,7 @@ from config.config import DATABASE_CONNECTION_URI
 from routes.equipo_route import equipo_bp
 from routes.estadio_route import estadio_bp
 from routes.partido_route import partido_bp
+from routes.usuario_route import Usuario_bp
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.register_blueprint(equipo_bp)
 app.register_blueprint(estadio_bp)
 app.register_blueprint(partido_bp)
+app.register_blueprint(Usuario_bp)
 
 db.init_app(app)
 

@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+
+{%block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='ver_perfil.css') }}">
+{% endblock %}
+
+{% block title %}
+    <title>Perfil</title>
+{% endblock %}
+
+{%block content%}
+<div class="perfil-card">
+
+    <img src="{{ url_for('static', filename=user.foto_perfil)}}" alt="Foto" width="200"> 
+        
+
+
+    <h2>
+        {{ user.nombre_usuario }}
+    </h2>
+
+
+    <p>
+        {{ user.mail_usuario }}
+    </p>
+
+
+    <a href="{{ url_for('Usuario.editarformulario', id=user.id_usuario) }}">
+        <button class="btn-editar">
+            Editar perfil
+        </button>
+    </a>
+
+
+</div>
+{% endblock%}
