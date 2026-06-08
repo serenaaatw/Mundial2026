@@ -1,3 +1,6 @@
 envmundial
+venv
 .env
-./pycache
+./pycaches
+__pycache__
+*.pyc
