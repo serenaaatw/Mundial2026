@@ -1,30 +1,44 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, redirect, request, render_template, url_for
 from controllers.partido_controller import *
 
 partido_bp = Blueprint('partido', __name__)
 
-@partido_bp.route('/partidos', methods=['POST'])
+@partido_bp.route('/partidos/crear', methods=['POST'])
 def crearPartido():
     data = request.form.to_dict()
-    nuevo_partido = crear_partido(data)
-    return render_template('partido_creado.html', partido=nuevo_partido)
+    crear_partido(data)
+    return redirect(url_for('partido.obtenerPartidos'))
+
+@partido_bp.route('/partidos/nuevo')
+def formularioCrear():
+    return render_template('agregarPartido.html')
 
 @partido_bp.route('/partidos', methods=['GET'])
 def obtenerPartidos():
     partidos= obtener_partidos()
     return render_template('partidos.html', partidos=partidos) 
 
+@partido_bp.route('/partidos/<int:partido_id>/editar', methods=['GET'])
+def formularioEditar(partido_id):
+    partido = obtener_partido(partido_id)
+    return render_template('actualizarPartido.html', partido=partido)
+
 @partido_bp.route('/partidos/<int:partido_id>', methods=['GET'])
 def obtenerPartido(partido_id):
     partido = obtener_partido(partido_id)
-    return render_template('partido.html', partido=partido)
+    return render_template('partidos.html', partido=partido)
 
-@partido_bp.route('/partidos/<int:partido_id>', methods=['PUT'])
+@partido_bp.route('/partidos/<int:partido_id>', methods=['POST'])
 def actualizarPartido(partido_id):
     data = request.form.to_dict()
-    return render_template('actualizarPartido.html', partido=actualizar_partido(partido_id, data))
+    try:
+        actualizar_partido(partido_id, data)
+        return redirect(url_for('partido.obtenerPartidos'))
+    except ValueError as e:
+        partido = obtener_partido(partido_id)
+        return render_template('actualizarPartido.html', partido=partido, error=str(e))
 
-@partido_bp.route('/partidos/<int:partido_id>', methods=['DELETE'])
+@partido_bp.route('/partidos/<int:partido_id>/eliminar')
 def eliminarPartido(partido_id):
-    success= eliminar_partido(partido_id)
-    return render_template('partido_eliminado.html', success=success)
+    eliminar_partido(partido_id)
+    return redirect(url_for('partido.obtenerPartidos'))

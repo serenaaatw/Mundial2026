@@ -1,3 +1,4 @@
 envmundial
 .env
 ./pycache
+*.pyc
