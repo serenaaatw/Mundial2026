@@ -1,11 +1,5 @@
-envmundial
 venv
 .env
-<<<<<<< HEAD
-./pycaches
 __pycache__
 *.pyc
-=======
-./pycache
-*.pyc
->>>>>>> origin/feature/Partidos
+
