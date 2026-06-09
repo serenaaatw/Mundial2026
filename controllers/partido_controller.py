@@ -24,7 +24,7 @@ def obtener_partidos():
 def obtener_partido(partido_id):
     partido = Partido.query.get(partido_id)
     if partido:
-        return partido.serialize()
+        return partido
     return {"error": "Partido no encontrado"}
 
 def actualizar_partido(partido_id, data):
@@ -40,6 +40,8 @@ def actualizar_partido(partido_id, data):
     }
     
     if partido:
+        if int(data["id_equipo1"]) == int(data["id_equipo2"]):
+            raise ValueError("Un equipo no puede jugar contra sí mismo")
         for key, value in data.items():
             if key in TIPOS:
                 value = TIPOS[key](value)
@@ -49,11 +51,9 @@ def actualizar_partido(partido_id, data):
     return {"error": "Partido no encontrado"}
 
 def eliminar_partido(partido_id):
-    success=False
     partido = Partido.query.get(partido_id)
     if partido:
         db.session.delete(partido)
         db.session.commit()
-        success=True
-        return success
-    return success
+        return True
+    return False

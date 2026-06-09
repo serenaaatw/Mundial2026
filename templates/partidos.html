@@ -10,7 +10,7 @@
 
 {% block content %}
     <h1>Partidos</h1>
-    <a href="/partido/nuevo" class="btn-agregar">Agregar Partido</a>
+    <a href="{{ url_for('partido.formularioCrear') }}" class="btn-agregar">Agregar Partido</a>
     <table class="tabla-partidos">
        <caption>LISTA DE PARTIDOS </caption>
         {%for partido in partidos %}
@@ -24,10 +24,11 @@
             <td>{{ partido.nombre_estadio }}</td>
             <td>{{ partido.estado }}</td>
             <td>{{ partido.etapa }}</td>
-            <td><a href="/partido/{{ partido.id }}/eliminar"class=btn-eliminar>Eliminar</a></td>
-            <td><a href="/partido/{{ partido.id }}/editar"class=btn-editar>Editar</a></td>
-        </tr>
-        {% endfor %}
+            <td><a href="{{ url_for('partido.eliminarPartido', partido_id=partido.id) }}" class="btn-eliminar"  
+                onclick="return confirm('¿Está seguro/a de eliminar este partido?')">Eliminar</a></td>
+            <td><a href="{{ url_for('partido.formularioEditar', partido_id=partido.id) }}"class="btn-editar">Editar</a></td>
+        {% endfor %} 
+        </tr> 
     </table>
 
 {% endblock %}
