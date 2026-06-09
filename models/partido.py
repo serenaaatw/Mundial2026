@@ -10,7 +10,7 @@ class Partido(db.Model):
     fecha = db.Column(db.Date, nullable=False)
     hora = db.Column(db.Time, nullable=False)
     estado = db.Column(db.Enum('Programado', 'Suspendido', 'Finalizado'), nullable=False, default='Programado')
-    etapa= db.Column(db.Enum('Fase de Grupos', 'Octavos de Final', 'Cuartos de Final', 'Semifinales', 'Final'), nullable=False)
+    etapa= db.Column(db.Enum('Fase de Grupos', 'Dieciseisavos de final', 'Octavos de Final', 'Cuartos de Final', 'Semifinales', 'Final'), nullable=False)
 
     def __init__(self, id_equipo1, id_equipo2, id_estadio, fecha, hora, estado, etapa):
         if id_equipo1 == id_equipo2:

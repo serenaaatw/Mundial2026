@@ -38,10 +38,38 @@ def actualizar_partido(partido_id, data):
         "estado": str,
         "etapa": str
     }
+    ESTADOS= ["programado", "suspendido", "finalizado"]
+    ETAPAS= ["fase de grupos", "dieciseisavos de final", "cuartos de final", "octavos de final", "semifinales", "final"]
     
     if partido:
+        from datetime import datetime
+        
+        try:
+            fecha_hora = datetime.strptime(f"{data['fecha']} {data['hora']}", "%Y-%m-%d %H:%M:%S")
+
+        except ValueError:
+            raise ValueError("Fecha u hora inválida. Use YYYY-MM-DD y HH:MM:SS")
+
+        if fecha_hora < datetime.now():
+             raise ValueError("La fecha y hora no pueden ser anteriores al momento actual")
+        if data["estado"].lower() not in ESTADOS:
+            raise ValueError("Estados posibles: Programado, Suspendido, Finalizado")
+        
+        if data["etapa"].lower() not in ETAPAS:
+            raise ValueError("Etapas posibles: Fase de Grupos, Dieciseisavos de final, Octavos de Final, Cuartos de Final, Semifinales, Final")
+        
+        if int(data["id_equipo1"])<1 or int(data["id_equipo2"]) <1:
+            raise ValueError("Ingrese números positivos")
+        
+        if not Equipo.query.get(int(data["id_equipo1"])) or not Equipo.query.get(int(data["id_equipo2"])):
+            raise ValueError("Ingrese equipos existentes")
+        
+        if not Estadio.query.get(int(data["id_estadio"])):
+            raise ValueError("Ingrese un estadio existente")
+        
         if int(data["id_equipo1"]) == int(data["id_equipo2"]):
             raise ValueError("Un equipo no puede jugar contra sí mismo")
+        
         for key, value in data.items():
             if key in TIPOS:
                 value = TIPOS[key](value)
