@@ -38,3 +38,15 @@
 .form-partido button:hover{
     background-color: #1e548d;
 }
+
+
+.mensaje-error{
+    margin-top: 60px;
+    background-color:#ffe5e5;
+    color:#b30000;
+    border:1px solid #b30000;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:5px;
+    text-align:center;
+}

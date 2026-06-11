@@ -82,6 +82,7 @@ python app.py
 - Estadio controller
 - Partido css
 - Endpoint partido (CRUD)
+- Validaciones al actualiza partido
 
 ### Diego Caipe
 

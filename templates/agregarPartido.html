@@ -7,9 +7,14 @@
     <title>Partido</title>
 {% endblock %}
 
-{% block content %} 
+{% block content %}
+ 
+    {% if error %}
+          <div class="mensaje-error">
+                {{ error }}
+          </div>
+     {% endif %}
     <form class="form-partido" action="{{ url_for('partido.crearPartido') }}" method="post">
-
     <label for="equipo1_id">ID Equipo 1:</label>
     <input
         type="text"

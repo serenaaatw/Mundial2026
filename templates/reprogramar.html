@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='reprogramar.css') }}">
+{% endblock %}
+
+{% block title %}
+    <title>Reprogramar Partido</title>
+{% endblock %}
+
+{% block content %}
+{% if error %}
+    <div class="error">
+        <p>{{ error }}</p>
+    </div>
+{% endif %}
+    <form action="/suspendidos/{{ partido.id }}/reprogramar" method="POST">
+
+        <div>
+            <label>Equipo 1</label>
+            <input type="text" value="{{ partido.id_equipo1 }}" readonly>
+        </div>
+
+        <div>
+            <label>Equipo 2</label>
+            <input type="text" value="{{ partido.id_equipo2 }}" readonly>
+        </div>
+
+        <div>
+            <label>Estadio</label>
+            <input type="text" name="id_estadio" value="{{ partido.id_estadio }}" required>
+        </div>
+
+        <div>
+            <label>Etapa</label>
+            <input type="text" value="{{ partido.etapa }}" readonly>
+        </div>
+
+        <div>
+            <label>Nueva fecha</label>
+            <input type="text" value="{{ partido.fecha }}" name="fecha" required>
+        </div>
+
+        <div>
+            <label>Nueva hora</label>
+            <input type="text" value="{{ partido.hora }}" name="hora" step="1" required>
+        </div>
+
+    <button type="submit">
+        Reprogramar partido
+    </button>
+
+</form>
+{% endblock %}
