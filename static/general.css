@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.titulo {
+    text-align: center;
+    color: #222;
+}
+.tarjeta-partido {
+    width: 420px;
+    margin: 20px auto;
+    padding: 25px;
+
+    background: hsl(210, 88%, 19%); 
+    color: white;
+
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px #999;
+
+    text-align: center;
+}
+.tarjeta-partido h3 {
+    color: white;
+    font-size: 24px;
+}
+.tarjeta-partido p {
+    color: white;
+}
+.tarjeta-partido > img {
+    width: 80px;
+    height: 80px;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.2);
+
+    padding: 5px;
+}
+.equipos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+
+    margin: 20px 0;
+}
+.equipos h2 {
+    color: white;
+}
+.equipos div {
+    width: 120px;
+}
+.equipos img {
+
+    width: 70px;
+    height: 45px;
+
+    object-fit: contain;
+
+    background: white;
+
+    padding: 5px;
+
+    border-radius: 10px;
+
+    border: 1px solid white;
+}
+.equipos p {
+    color: white;
+    font-weight: bold;
+}
+table {
+
+    width: 90%;
+    margin: 30px auto;
+
+    background: white;
+
+    border-collapse: collapse;
+
+    box-shadow: 0px 3px 10px #ccc;
+}
+th {
+
+    background: #0066cc;
+    color: white;
+
+    padding: 12px;
+}
+td {
+
+    padding: 12px;
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+}
+td img {
+
+    width: 35px;
+    height: 25px;
+
+    object-fit: contain;
+
+    vertical-align: middle;
+
+    background: white;
+    border-radius: 5px;
+}
+tr:hover {
+    background: #e8f2ff;
+}

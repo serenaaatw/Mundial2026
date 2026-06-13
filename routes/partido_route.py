@@ -67,6 +67,6 @@ def reprogramarPartido(partido_id):
     
 @partido_bp.route("/general", methods=["GET"])
 def partidosproximos():
-    partidos = partidos_proximos()
-    return render_template("general.html", partidos = partidos)
+    destacado, lista, clima = partidos_proximos()
+    return render_template("general.html", destacado=destacado,partidos=lista, clima = clima)
     

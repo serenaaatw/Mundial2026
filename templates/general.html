@@ -1,0 +1,103 @@
+{%extends "base.html"%}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='general.css') }}">
+{% endblock %}
+
+{% block title %}
+    <title>General</title>
+{% endblock %}
+
+{% block content %}
+
+<h2 class="titulo">Próximo partido</h2>
+
+{% if destacado %}
+
+<div class="tarjeta-partido">
+
+    <h3>{{ destacado.nombre_estadio }}</h3>
+    <p>{{clima.main.temp}}°C</p>
+    <p>{{clima.weather[0].description}}</p>
+    <img src="https://openweathermap.org/img/wn/{{ clima.weather[0].icon }}@2x.png"
+    alt="{{ clima.weather[0].description }}">
+
+    <div class="equipos">
+
+        <div>
+            <img src="{{url_for('static', filename=destacado.bandera_equipo1)}}" width="60">
+            <p>{{ destacado.nombre_equipo1 }}</p>
+        </div>
+
+        <h2>VS</h2>
+
+        <div>
+            <img src="{{url_for('static', filename=destacado.bandera_equipo2)}}" width="60">
+            <p>{{ destacado.nombre_equipo2 }}</p>
+        </div>
+
+    </div>
+    <p>
+        Fecha:
+        {{ destacado.fecha }}
+    </p>
+
+    <p>
+        Hora:
+        {{ destacado.hora }}
+    </p>
+
+    <p>
+        Estado:
+        {{ destacado.estado }}
+    </p>
+</div>
+{% endif %}
+<h2>Otros partidos</h2>
+<table>
+
+    <thead>
+        <tr>
+            <th>Equipo 1</th>
+            <th></th>
+            <th>Equipo 2</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estadio</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for partido in partidos %}
+
+        <tr>
+
+            <td>
+                <img src="{{url_for('static', filename=partido.bandera_equipo1)}}" width="35">
+                {{ partido.nombre_equipo1 }}
+            </td>
+
+            <td>VS</td>
+
+            <td>
+                <img src="{{url_for('static', filename=partido.bandera_equipo2)}}" width="35">
+                {{ partido.nombre_equipo2 }}
+            </td>
+
+            <td>{{ partido.fecha }}</td>
+
+            <td>{{ partido.hora }}</td>
+
+            <td>{{ partido.nombre_estadio }}</td>
+
+            <td>{{ partido.estado }}</td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
