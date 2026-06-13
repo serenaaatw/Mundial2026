@@ -166,3 +166,18 @@ def reprogramar_partido(partido_id, fecha, hora, estadio_id):
     db.session.commit()
 
     return nuevo_partido.serialize()
+
+def partidos_proximos():
+    from sqlalchemy import func
+    partidos = Partido.query.or_(
+            func.lower(Partido.estado) == "programado",
+            func.lower(Partido.estado) == "reprogramado").order_by(Partido.fecha.asc(),Partido.hora.asc()).limit(9).all()
+    for partido in partidos:
+        partido.nombre_equipo1 = Equipo.query.get(partido.id_equipo1).pais
+        partido.nombre_equipo2 = Equipo.query.get(partido.id_equipo2).pais
+        partido.nombre_estadio = Estadio.query.get(partido.id_estadio).nombre
+        partido.bandera_equipo1 = Equipo.query.get(partido.id_equipo1).bandera
+        partido.bandera_equipo2 = Equipo.query.get(partido.id_equipo2).bandera
+        partido.latitud = Estadio.query.get(partido.id_estadio).latitud
+        partido.longitud = Estadio.query.get(partido.id_estadio).longitud
+    return partidos

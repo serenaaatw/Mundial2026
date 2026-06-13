@@ -64,3 +64,9 @@ def reprogramarPartido(partido_id):
     except ValueError as e:
         partido = obtener_partido(partido_id)
         return render_template('reprogramar.html', partido=partido, error=str(e))
+    
+@partido_bp.route("/general", methods=["GET"])
+def partidosproximos():
+    partidos = partidos_proximos()
+    return render_template("general.html", partidos = partidos)
+    
