@@ -39,6 +39,11 @@ body{
     color:white;
     font-weight:bold;
     margin:0 3px;
+    display: inline-block;
+    width: 95px;
+    height: 20px;
+    text-align: center;
+    font-size: 15px;
 }
 
 .btn-editar{

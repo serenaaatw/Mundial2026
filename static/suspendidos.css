@@ -38,9 +38,9 @@ body{
     color:white;
     font-weight:bold;
     margin:0 3px;
-    background:#2563eb;
+    background:#ce3232;
 }
 
 .btn-reprogramar:hover{
-    background:#123188;
+    background:#881212;
 }

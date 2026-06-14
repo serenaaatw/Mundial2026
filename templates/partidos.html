@@ -26,7 +26,11 @@
             <td>{{ partido.etapa }}</td>
             <td><a href="{{ url_for('partido.eliminarPartido', partido_id=partido.id) }}" class="btn-eliminar"  
                 onclick="return confirm('¿Está seguro/a de eliminar este partido?')">Eliminar</a></td>
-            <td><a href="{{ url_for('partido.formularioEditar', partido_id=partido.id) }}"class="btn-editar">Editar</a></td>
+            {%if partido.estado == 'Suspendido' %}
+                <td><a href="{{ url_for('partido.reprogramarPartido', partido_id=partido.id) }}"class="btn-editar">Reprogramar</a></td>
+            {%else%}
+                <td><a href="{{ url_for('partido.formularioEditar', partido_id=partido.id) }}"class="btn-editar">Editar</a></td>
+            {% endif %}
         {% endfor %} 
         </tr> 
     </table>

@@ -13,14 +13,22 @@
             {{ error }}
         </div>
     {% endif %}    
-    <form class="form-partido" action="{{ url_for('partido.actualizarPartido', partido_id=partido.id) }}" method="post">
 
+    {% if partido.estado == 'Finalizado' %}
+        <div class="mensaje-error">
+            No se pueden editar partidos finalizados
+        </div>
+    {% endif %}
+    <form class="form-partido" action="{{ url_for('partido.actualizarPartido', partido_id=partido.id) }}" method="post">
     <label for="equipo1_id">ID Equipo 1:</label>
     <input
         type="text"
         id="equipo1_id"
         name="id_equipo1"
         value="{{ partido.id_equipo1 }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
 
     <br><br>
@@ -31,6 +39,9 @@
         id="equipo2_id"
         name="id_equipo2"
         value="{{ partido.id_equipo2 }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
 
     <br><br>
@@ -41,15 +52,22 @@
         id="idestadio"
         name="id_estadio"
         value="{{ partido.id_estadio }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
     <br><br>
 
     <label for="fecha">Fecha:</label>
+
     <input
         type="text"
         id="fecha"
         name="fecha"
         value="{{ partido.fecha }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
     <br><br>
 
@@ -59,6 +77,9 @@
         id="hora"
         name="hora"
         value="{{ partido.hora }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
     <br><br>
     <label for="estado">Estado:</label>
@@ -67,6 +88,9 @@
         id="estado"
         name="estado"
         value="{{ partido.estado }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
     <br><br>
     <label for="etapa">Etapa:</label>
@@ -75,9 +99,15 @@
         id="etapa"
         name="etapa"
         value="{{ partido.etapa }}"
+        {% if partido.estado == 'Finalizado' %}
+            readonly
+        {% endif %}
     >
     <br><br>
-    <button type="submit">Guardar cambios</button>
-
+    {% if partido.estado != 'Finalizado' %}
+        <button type="submit">Guardar cambios</button>
+    {% else %}
+        <a href="{{ url_for('partido.obtenerPartidos') }}" class="volver">Volver</a>
+    {% endif %}
     </form>
 {% endblock %}
