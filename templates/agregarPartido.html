@@ -73,4 +73,53 @@
     <button type="submit">Guardar cambios</button>
     </form>
 
+    <table class="tabla-estadios">
+        <caption>LISTA DE ESTADIOS</caption>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>País</th>
+                <th>Ciudad</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for estadio in estadios %}
+            <tr>
+                <td>{{ estadio.id }}</td>
+                <td>{{ estadio.nombre }}</td>
+                <td>{{ estadio.pais }}</td>
+                <td>{{ estadio.ciudad }}</td>
+                <td>{{ estadio.capacidad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="tabla-equipos">
+        <caption>LISTA DE EQUIPOS</caption>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>País</th>
+                <th>Bandera</th>
+                <th>Grupo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for equipo in equipos %}
+            <tr>
+                <td>{{ equipo.id }}</td>
+                <td>{{ equipo.pais }}</td>
+                <td><img src="{{ url_for('static', filename=equipo.bandera) }}" alt="Bandera" width="30"></td>
+                <td>{{ equipo.grupo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

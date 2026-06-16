@@ -1,5 +1,7 @@
 from flask import Blueprint, redirect, request, render_template, url_for
 from controllers.partido_controller import *
+from controllers.equipo_controller import ver_equipos
+from controllers.estadio_controller import ver_estadios
 
 partido_bp = Blueprint('partido', __name__)
 
@@ -14,7 +16,9 @@ def crearPartido():
 
 @partido_bp.route('/partidos/nuevo')
 def formularioCrear():
-    return render_template('agregarPartido.html')
+    equipos= ver_equipos()
+    estadios= ver_estadios()
+    return render_template('agregarPartido.html', estadios= estadios, equipos= equipos)
 
 @partido_bp.route('/partidos', methods=['GET'])
 def obtenerPartidos():
@@ -24,7 +28,9 @@ def obtenerPartidos():
 @partido_bp.route('/partidos/<int:partido_id>/editar', methods=['GET'])
 def formularioEditar(partido_id):
     partido = obtener_partido(partido_id)
-    return render_template('actualizarPartido.html', partido=partido)
+    equipos= ver_equipos()
+    estadios= ver_estadios()
+    return render_template('actualizarPartido.html', partido=partido, equipos= equipos, estadios= estadios)
 
 @partido_bp.route('/partidos/<int:partido_id>', methods=['GET'])
 def obtenerPartido(partido_id):
@@ -54,7 +60,8 @@ def partidosSuspendidos():
 @partido_bp.route('/suspendidos/<int:partido_id>/reprogramar', methods=['GET'])
 def formularioReprogramar(partido_id):
     partido = obtener_partido(partido_id)
-    return render_template('reprogramar.html', partido=partido)
+    estadios= ver_estadios()
+    return render_template('reprogramar.html', partido=partido, estadios= estadios)
 
 @partido_bp.route('/suspendidos/<int:partido_id>/reprogramar', methods=['POST'])
 def reprogramarPartido(partido_id):

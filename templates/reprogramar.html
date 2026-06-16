@@ -50,4 +50,31 @@
     </button>
 
 </form>
+
+    <table class="tabla-estadios">
+        <caption>LISTA DE ESTADIOS</caption>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>País</th>
+                <th>Ciudad</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for estadio in estadios %}
+            <tr>
+                <td>{{ estadio.id }}</td>
+                <td>{{ estadio.nombre }}</td>
+                <td>{{ estadio.pais }}</td>
+                <td>{{ estadio.ciudad }}</td>
+                <td>{{ estadio.capacidad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
 {% endblock %}

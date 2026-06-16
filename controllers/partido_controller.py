@@ -43,7 +43,7 @@ def crear_partido(data):
     return {"error": "No se pudo crear el partido"}
 
 def obtener_partidos():
-    partidos = Partido.query.all()
+    partidos = Partido.query.order_by(Partido.fecha, Partido.hora).all()
     for partido in partidos:
         partido.nombre_equipo1 = Equipo.query.get(partido.id_equipo1).pais
         partido.nombre_equipo2 = Equipo.query.get(partido.id_equipo2).pais
