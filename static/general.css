@@ -3,33 +3,41 @@ body {
     background-color: #f2f2f2;
     padding: 20px;
 }
+
 .titulo {
     text-align: center;
     color: #222;
 }
-.tarjeta-partido {
-    width: 420px;
-    margin: 20px auto;
-    padding: 25px;
 
-    background: hsl(210, 88%, 19%); 
+.tarjeta-partido {
+    width: 90%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+
+    background: hsl(210, 88%, 19%);
     color: white;
 
-    border-radius: 20px;
-    box-shadow: 0px 5px 15px #999;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 
     text-align: center;
 }
+
 .tarjeta-partido h3 {
     color: white;
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
+
 .tarjeta-partido p {
     color: white;
+    margin: 6px 0;
 }
+
 .tarjeta-partido > img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
 
     border: 2px solid white;
     border-radius: 50%;
@@ -38,41 +46,47 @@ body {
 
     padding: 5px;
 }
+
 .equipos {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
+    gap: 25px;
 
     margin: 20px 0;
 }
+
 .equipos h2 {
     color: white;
+    margin: 0;
 }
-.equipos div {
-    width: 120px;
-}
-.equipos img {
 
-    width: 70px;
-    height: 45px;
+.equipos div {
+    width: 100px;
+}
+
+.equipos img {
+    width: 60px;
+    height: 40px;
 
     object-fit: contain;
 
     background: white;
 
-    padding: 5px;
+    padding: 4px;
 
-    border-radius: 10px;
+    border-radius: 8px;
 
     border: 1px solid white;
 }
+
 .equipos p {
     color: white;
     font-weight: bold;
+    margin-top: 6px;
 }
-table {
 
+table {
     width: 90%;
     margin: 30px auto;
 
@@ -80,24 +94,24 @@ table {
 
     border-collapse: collapse;
 
-    box-shadow: 0px 3px 10px #ccc;
+    box-shadow: 0 3px 10px #ccc;
 }
-th {
 
+th {
     background: #0066cc;
     color: white;
 
     padding: 12px;
 }
-td {
 
+td {
     padding: 12px;
     text-align: center;
 
     border-bottom: 1px solid #ddd;
 }
-td img {
 
+td img {
     width: 35px;
     height: 25px;
 
@@ -108,6 +122,72 @@ td img {
     background: white;
     border-radius: 5px;
 }
+
 tr:hover {
     background: #e8f2ff;
+}
+
+.tabla-container {
+    overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .tarjeta-partido {
+        width: 85%;
+        max-width: 280px;
+        padding: 16px;
+    }
+
+    .tarjeta-partido h3 {
+        font-size: 18px;
+    }
+
+    .tarjeta-partido > img {
+        width: 55px;
+        height: 55px;
+    }
+
+    /* EQUIPOS EN FILA */
+    .equipos {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 15px 0;
+    }
+
+    .equipos div {
+        width: 80px;
+    }
+
+    .equipos img {
+        width: 45px;
+        height: 30px;
+    }
+
+    .equipos h2 {
+        font-size: 22px;
+        margin: 0;
+    }
+
+    .equipos p {
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    table {
+        width: max-content;
+        min-width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 13px;
+    }
 }

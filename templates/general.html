@@ -54,50 +54,51 @@
 </div>
 {% endif %}
 <h2>Otros partidos</h2>
-<table>
+<div class="tabla-container"> 
+    <table>
 
-    <thead>
-        <tr>
-            <th>Equipo 1</th>
-            <th></th>
-            <th>Equipo 2</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Estadio</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for partido in partidos %}
+        <thead>
+            <tr>
+                <th>Equipo 1</th>
+                <th></th>
+                <th>Equipo 2</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estadio</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partido in partidos %}
 
-        <tr>
+            <tr>
 
-            <td>
-                <img src="{{url_for('static', filename=partido.bandera_equipo1)}}" width="35">
-                {{ partido.nombre_equipo1 }}
-            </td>
+                <td>
+                    <img src="{{url_for('static', filename=partido.bandera_equipo1)}}" width="35">
+                    {{ partido.nombre_equipo1 }}
+                </td>
 
-            <td>VS</td>
+                <td>VS</td>
 
-            <td>
-                <img src="{{url_for('static', filename=partido.bandera_equipo2)}}" width="35">
-                {{ partido.nombre_equipo2 }}
-            </td>
+                <td>
+                    <img src="{{url_for('static', filename=partido.bandera_equipo2)}}" width="35">
+                    {{ partido.nombre_equipo2 }}
+                </td>
 
-            <td>{{ partido.fecha }}</td>
+                <td>{{ partido.fecha }}</td>
 
-            <td>{{ partido.hora }}</td>
+                <td>{{ partido.hora }}</td>
 
-            <td>{{ partido.nombre_estadio }}</td>
+                <td>{{ partido.nombre_estadio }}</td>
 
-            <td>{{ partido.estado }}</td>
+                <td>{{ partido.estado }}</td>
 
-        </tr>
+            </tr>
 
-    {% endfor %}
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 {% endblock %}
