@@ -10,20 +10,22 @@
 
 {% block content %}
     <h1>Partidos Suspendidos</h1>
-    <table class="tabla-partidos">
-        <caption>Partidos Suspendidos</caption>
-        {% for partido in partidos %}
-        <tr>
-            <td>{{ partido.nombre_equipo1 }}</td>
-            <td><img src="{{url_for('static', filename=partido.bandera_equipo1)}}" alt="Bandera" width="30"></td>
-            <td>{{ partido.nombre_equipo2 }}</td>
-            <td><img src="{{url_for('static', filename=partido.bandera_equipo2)}}" alt="Bandera" width="30"></td>
-            <td>{{ partido.fecha }}</td>
-            <td>{{ partido.hora }}</td>
-            <td>{{ partido.nombre_estadio }}</td>
-            <td>{{ partido.etapa}}</td>
-            <td><a href="{{ url_for('partido.reprogramarPartido', partido_id=partido.id) }}" class="btn-reprogramar" >Reprogramar</a>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="tabla-container">
+        <table class="tabla-partidos">
+            <caption>Partidos Suspendidos</caption>
+            {% for partido in partidos %}
+            <tr>
+                <td>{{ partido.nombre_equipo1 }}</td>
+                <td><img src="{{url_for('static', filename=partido.bandera_equipo1)}}" alt="Bandera" width="30"></td>
+                <td>{{ partido.nombre_equipo2 }}</td>
+                <td><img src="{{url_for('static', filename=partido.bandera_equipo2)}}" alt="Bandera" width="30"></td>
+                <td>{{ partido.fecha }}</td>
+                <td>{{ partido.hora }}</td>
+                <td>{{ partido.nombre_estadio }}</td>
+                <td>{{ partido.etapa}}</td>
+                <td><a href="{{ url_for('partido.reprogramarPartido', partido_id=partido.id) }}" class="btn-reprogramar" >Reprogramar</a>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

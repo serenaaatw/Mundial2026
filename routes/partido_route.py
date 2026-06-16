@@ -12,7 +12,9 @@ def crearPartido():
         nuevo_partido = crear_partido(data)
         return redirect(url_for('partido.obtenerPartidos'))
     except ValueError as e:
-        return render_template('agregarPartido.html', error=str(e))
+        equipos= ver_equipos()
+        estadios= ver_estadios()
+        return render_template('agregarPartido.html', error=str(e), estadios= estadios, equipos= equipos)
 
 @partido_bp.route('/partidos/nuevo')
 def formularioCrear():
@@ -30,7 +32,7 @@ def formularioEditar(partido_id):
     partido = obtener_partido(partido_id)
     equipos= ver_equipos()
     estadios= ver_estadios()
-    return render_template('actualizarPartido.html', partido=partido, equipos= equipos, estadios= estadios)
+    return render_template('actualizarPartido.html', partido=partido, equipos= equipos, estadios=estadios)
 
 @partido_bp.route('/partidos/<int:partido_id>', methods=['GET'])
 def obtenerPartido(partido_id):
@@ -45,7 +47,9 @@ def actualizarPartido(partido_id):
         return redirect(url_for('partido.obtenerPartidos'))
     except ValueError as e:
         partido = obtener_partido(partido_id)
-        return render_template('actualizarPartido.html', partido=partido, error=str(e))
+        equipos= ver_equipos()
+        estadios= ver_estadios()
+        return render_template('actualizarPartido.html', partido=partido, error=str(e), equipos= equipos, estadios=estadios)
 
 @partido_bp.route('/partidos/<int:partido_id>/eliminar')
 def eliminarPartido(partido_id):
@@ -70,4 +74,5 @@ def reprogramarPartido(partido_id):
         return redirect(url_for('partido.partidosSuspendidos'))
     except ValueError as e:
         partido = obtener_partido(partido_id)
-        return render_template('reprogramar.html', partido=partido, error=str(e))
+        estadios= ver_estadios()
+        return render_template('reprogramar.html', partido=partido, error=str(e), estadios=estadios)

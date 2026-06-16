@@ -44,3 +44,33 @@ body{
 .btn-reprogramar:hover{
     background:#881212;
 }
+
+.tabla-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px){
+
+    .tabla-partidos{
+        min-width: 700px;
+    }
+
+    .tabla-partidos caption{
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    .tabla-partidos td,
+    .tabla-partidos th{
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .btn-reprogramar{
+        display: inline-block;
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+}

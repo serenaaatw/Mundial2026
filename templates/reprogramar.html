@@ -45,12 +45,13 @@
             <input type="text" value="{{ partido.hora }}" name="hora" step="1" required>
         </div>
 
-    <button type="submit">
+    <button type="submit" class="form-button">
         Reprogramar partido
     </button>
 
 </form>
 
+<div class="tabla-container">
     <table class="tabla-estadios">
         <caption>LISTA DE ESTADIOS</caption>
 
@@ -76,5 +77,6 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
     
 {% endblock %}

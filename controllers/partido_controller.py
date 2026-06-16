@@ -8,8 +8,29 @@ def crear_partido(data):
     ETAPAS= ["fase de grupos", "dieciseisavos de final", "cuartos de final", "octavos de final", 
              "semifinales", "final", "tercer y cuarto puesto"]
     
+    campos = ["id_equipo1", "id_equipo2", "id_estadio", "fecha", "hora", "estado", "etapa"]
+
+    if any(not data.get(c) for c in campos):
+        raise ValueError("Todos los campos son obligatorios.")
+    
+    if not Estadio.query.get(int(data["id_estadio"])):
+        raise ValueError("Ingrese un estadio existente")
+    
+    fecha = data["fecha"]
+    hora = data["hora"]
+    estadio_id= data["id_estadio"]
+
+    partido_existente = Partido.query.filter_by(
+        id_estadio= estadio_id,
+        fecha=fecha,
+        hora=hora
+    ).first()
+
+    if partido_existente:
+        raise ValueError("Ya existe un partido en esta fecha, hora y estadio.")
+
     from datetime import datetime
-        
+
     try:
         fecha_hora = datetime.strptime(f"{data['fecha']} {data['hora']}", "%Y-%m-%d %H:%M:%S")
     except ValueError:
@@ -17,8 +38,19 @@ def crear_partido(data):
 
     if fecha_hora < datetime.now():
        raise ValueError("La fecha y hora no pueden ser anteriores al momento actual")
-    if data["estado"].lower() not in ESTADOS:
+    
+    estado= data["estado"].lower()
+
+    if estado not in ESTADOS:
         raise ValueError("Estados posibles: Programado, Suspendido, Finalizado, Reprogramado")
+    
+    if estado == "finalizado":
+        if fecha_hora > datetime.now():
+            raise ValueError("No se puede finalizar un partido que aún no se ha jugado")
+    
+    if estado in ["programado", "reprogramado"]:
+        if fecha_hora < datetime.now():
+             raise ValueError("La fecha y hora no pueden ser anteriores al momento actual")
         
     if data["etapa"].lower() not in ETAPAS:
       raise ValueError("Etapas posibles: Fase de Grupos, Dieciseisavos de final, Octavos de Final, Cuartos de Final, Semifinales, Final, Tercer y Cuarto puesto")
@@ -26,14 +58,18 @@ def crear_partido(data):
     if int(data["id_equipo1"])<1 or int(data["id_equipo2"]) <1:
         raise ValueError("Ingrese números positivos")
         
-    if not Equipo.query.get(int(data["id_equipo1"])) or not Equipo.query.get(int(data["id_equipo2"])):
+    equipo1 = Equipo.query.get(int(data["id_equipo1"]))
+    equipo2 = Equipo.query.get(int(data["id_equipo2"]))
+
+    if not equipo1 or not equipo2:
         raise ValueError("Ingrese equipos existentes")
-        
-    if not Estadio.query.get(int(data["id_estadio"])):
-        raise ValueError("Ingrese un estadio existente")
         
     if int(data["id_equipo1"]) == int(data["id_equipo2"]):
         raise ValueError("Un equipo no puede jugar contra sí mismo")
+    
+    if data["etapa"].lower() == "fase de grupos":
+        if equipo1.grupo != equipo2.grupo:
+            raise ValueError("En fase de grupos ambos equipos deben pertenecer al mismo grupo")
     
     nuevo_partido = Partido(**data)
     if nuevo_partido:
@@ -60,6 +96,7 @@ def obtener_partido(partido_id):
 
 def actualizar_partido(partido_id, data):
     partido = Partido.query.get(partido_id)
+
     TIPOS = {
         "id_equipo1": int,
         "id_equipo2": int,
@@ -69,6 +106,11 @@ def actualizar_partido(partido_id, data):
         "estado": str,
         "etapa": str
     }
+
+    campos = ["id_equipo1", "id_equipo2", "id_estadio", "fecha", "hora", "estado", "etapa"]
+    if any(not data.get(c) for c in campos):
+        raise ValueError("Todos los campos son obligatorios.")
+
     ESTADOS= ["programado", "suspendido", "finalizado", "reprogramado"]
     ETAPAS= ["fase de grupos", "dieciseisavos de final", "cuartos de final", "octavos de final", 
              "semifinales", "final", "tercer y cuarto puesto"]
@@ -89,6 +131,19 @@ def actualizar_partido(partido_id, data):
     for campo in campos_requeridos:
         if campo not in data:
             raise ValueError(f"Falta el campo {campo}")
+    
+    fecha = data["fecha"]
+    hora = data["hora"]
+    estadio_id= data["id_estadio"]
+
+    partido_existente = Partido.query.filter_by(
+        id_estadio= estadio_id,
+        fecha=fecha,
+        hora=hora
+    ).first()
+
+    if partido_existente:
+        raise ValueError("Ya existe un partido en esta fecha, hora y estadio.")
     
     estado= data["estado"].lower()
     
@@ -188,6 +243,16 @@ def reprogramar_partido(partido_id, fecha, hora, estadio_id):
     if not partido:
         raise ValueError("Partido no encontrado")
 
+    partido_existente = Partido.query.filter_by(
+        id_estadio= estadio_id,
+        fecha=fecha,
+        hora=hora
+    ).first()
+
+    if partido_existente:
+        raise ValueError("Ya existe un partido en esta fecha, hora y estadio.")
+    
+    
     from datetime import datetime
     try:
         fecha_hora = datetime.strptime(

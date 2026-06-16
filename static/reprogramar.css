@@ -1,5 +1,4 @@
 
-
 form {
     max-width: 500px;
     margin: 40px auto;
@@ -38,7 +37,7 @@ input[readonly] {
     color: #666;
 }
 
-button {
+.form-button {
     width: 100%;
     padding: 12px;
     border: none;
@@ -115,4 +114,46 @@ button:hover {
 
 .tabla-estadios {
     border-collapse: collapse;
+}
+
+.tabla-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px){
+
+    form{
+        width: 95%;
+        margin: 20px auto;
+        padding: 15px;
+        box-sizing: border-box;
+        margin-top: 50px;
+    }
+
+    .error{
+        width: 95%;
+        margin: 20px auto;
+        box-sizing: border-box;
+        margin-top: 80px;
+    }
+
+    .tabla-estadios{
+        min-width: 600px;
+    }
+
+    .tabla-estadios caption{
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    .tabla-estadios th,
+    .tabla-estadios td{
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    button{
+        font-size: 14px;
+    }
 }
