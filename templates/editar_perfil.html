@@ -15,7 +15,7 @@
             {{error}}
         </div>
     {% endif%}
-    <form action = "{{url_for('Usuario.actualizarperfil', id=user.id_usuario)}}"method=post enctype="multipart/form-data">
+    <form action = "{{url_for('Usuario.actualizarperfil', id=id_usuario)}}"method=post enctype="multipart/form-data">
     <label for = "nombre_usuario">Nombre</label>
     <input 
         type="text"
