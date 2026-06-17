@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Iniciar Sesión</h1>
+
+    <form action="{{ url_for('auth.login') }}" method="POST">
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <br><br>
+
+        <label>Contraseña:</label>
+        <input type="password" name="password" required>
+        <br><br>
+
+        <button type="submit">
+            Ingresar
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('auth.register') }}">
+        Ya tengo cuenta
+    </a>
+</body>
+</html>
