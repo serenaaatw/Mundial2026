@@ -1,25 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel administrador</title>
-</head>
-<body>
-    <h2>Bienvenido Administrador</h2>
+{% extends "base.html" %}
 
-    <ul>
+{% block title %}
+<title>Panel Administrador</title>
+{% endblock %}
 
-        <li>Crear Partido</li>
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+{% endblock %}
 
-        <li>Eliminar usuario</li>
+{% block content %}
 
-        <li>Ver reporte</li>
+<div class="dashboard">
 
-    </ul>
-    <br>
-    <a href="{{ url_for('auth.logout') }}">
-        Cerrar Sesión
-    </a>
-</body>
-</html>
+    <h1>Panel de Administración</h1>
+
+    <p class="bienvenida">
+        Bienvenido administrador.
+    </p>
+
+    <div class="cards-container">
+
+        <div class="card">
+            <h2>Crear Partido</h2>
+            <p>
+                Registrar nuevos partidos del Mundial 2026.
+            </p>
+
+            <a href="#" class="btn">
+                Ir
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Modificar Partido</h2>
+            <p>
+                Editar información de partidos existentes.
+            </p>
+
+            <a href="#" class="btn">
+                Ir
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Eliminar Partido</h2>
+            <p>
+                Eliminar partidos registrados.
+            </p>
+
+            <a href="#" class="btn">
+                Ir
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Gestionar Usuarios</h2>
+            <p>
+                Administrar cuentas de clientes.
+            </p>
+
+            <a href="#" class="btn">
+                Ir
+            </a>
+        </div>
+
+    </div>
+
+    <div class="logout-container">
+        <a href="{{ url_for('auth.logout') }}" class="logout-btn">
+            Cerrar sesión
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
