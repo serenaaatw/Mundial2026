@@ -1,23 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel cliente</title>
-</head>
-<body>
-    <h2>Bienvenido cliente</h2>
+{% extends "base.html" %}
 
-    <ul>
+{% block title %}
+<title>Panel Cliente</title>
+{% endblock %}
 
-        <li>Ver Partido</li>
-        <li>Ver Perfil</li>
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+{% endblock %}
 
-    </ul>
+{% block content %}
 
-    <br>
-    <a href="{{ url_for('auth.logout') }}">
-        Cerrar Sesión
-    </a>
-</body>
-</html>
+<div class="dashboard">
+
+    <h1>Panel del Cliente</h1>
+
+    <p class="bienvenida">
+        Bienvenido al sistema de gestión del Mundial 2026.
+    </p>
+
+    <div class="cards-container">
+
+        <div class="card">
+            <h2>Ver Partidos</h2>
+            <p>
+                Consulta todos los partidos disponibles del Mundial 2026.
+            </p>
+
+            <a href="{{ url_for('partido.obtenerPartidos') }}" class="btn">
+                Ver Partidos
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Mi Perfil</h2>
+            <p>
+                Consulta la información de tu cuenta y tus datos personales.
+            </p>
+
+            <a href="#" class="btn">
+                Ver Perfil
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Próximos Encuentros</h2>
+            <p>
+                Consulta los próximos partidos programados.
+            </p>
+
+            <a href="{{ url_for('partido.obtenerPartidos') }}" class="btn">
+                Consultar
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Selecciones Participantes</h2>
+            <p>
+                Explora las selecciones que participan en el Mundial 2026.
+            </p>
+
+            <a href="#" class="btn">
+                Ver Selecciones
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
