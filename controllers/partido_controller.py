@@ -2,6 +2,7 @@ from models.db import db
 from models.partido import Partido
 from models.equipo import Equipo
 from models.estadio import Estadio
+from services.clima_services import obtener_clima
 
 def crear_partido(data):
     ESTADOS= ["programado", "suspendido", "finalizado", "reprogramado"]
@@ -285,3 +286,23 @@ def reprogramar_partido(partido_id, fecha, hora, estadio_id):
     db.session.commit()
 
     return nuevo_partido.serialize()
+
+def partidos_proximos():
+    from sqlalchemy import func, or_
+    partidos = Partido.query.filter(or_(
+            func.lower(Partido.estado) == "programado",
+            func.lower(Partido.estado) == "reprogramado")).order_by(Partido.fecha.asc(),Partido.hora.asc()).limit(9).all()
+    for partido in partidos:
+        partido.nombre_equipo1 = Equipo.query.get(partido.id_equipo1).pais
+        partido.nombre_equipo2 = Equipo.query.get(partido.id_equipo2).pais
+        partido.nombre_estadio = Estadio.query.get(partido.id_estadio).nombre
+        partido.bandera_equipo1 = Equipo.query.get(partido.id_equipo1).bandera
+        partido.bandera_equipo2 = Equipo.query.get(partido.id_equipo2).bandera
+        partido.latitud = Estadio.query.get(partido.id_estadio).latitud
+        partido.longitud = Estadio.query.get(partido.id_estadio).longitud
+    partido_destacado = partidos[0] if partidos else None
+    resto_partidos = partidos[1:] if len(partidos) > 1 else []
+    clima = None
+    if partido_destacado:
+        clima = obtener_clima(partido_destacado.latitud, partido_destacado.longitud)
+    return partido_destacado, resto_partidos, clima

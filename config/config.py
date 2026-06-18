@@ -2,6 +2,9 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+class config_clima:
+    OPENWEATHER_API_KEY = os.getenv("API_KEY")
+ 
 
 MYSQL_PORT = os.getenv("MYSQL_PORT")
 MYSQL_HOST = os.getenv("MYSQL_HOST")

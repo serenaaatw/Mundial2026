@@ -76,3 +76,9 @@ def reprogramarPartido(partido_id):
         partido = obtener_partido(partido_id)
         estadios= ver_estadios()
         return render_template('reprogramar.html', partido=partido, error=str(e), estadios=estadios)
+    
+@partido_bp.route("/general", methods=["GET"])
+def partidosproximos():
+    destacado, lista, clima = partidos_proximos()
+    return render_template("general.html", destacado=destacado,partidos=lista, clima = clima)
+    

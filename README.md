@@ -23,6 +23,7 @@ MYSQL_PASSWORD=<tu_contraseña>
 MYSQL_DATABASE=<nombre_de_la_base>
 MYSQL_HOST=<host_de_mysql>
 MYSQL_PORT=<puerto_de_mysql>
+API_KEY = <clave_openweather>
 ```
 
 ---
