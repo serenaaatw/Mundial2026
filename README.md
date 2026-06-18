@@ -66,6 +66,14 @@ python app.py
 ## Aporte de cada integrante
 
 ### Tomás Caballero
+- Creacion controlador usuario
+- Creacion ruta usuario(ver, editar y actualizar)
+- Creación ver perfil html
+- Creación editar perfil html
+- Creación ver perfil css
+- Creacion editar perfil css
+- Cargar foto de perfil en perfil
+- Validar direccion de correo 
 
 ### Uriel Martinez
 

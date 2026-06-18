@@ -1,0 +1,127 @@
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.perfil-card {
+
+    width: 90%;
+    max-width: 320px;
+
+    margin: 120px auto 60px;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+
+    box-sizing: border-box;
+}
+.perfil-card img {
+
+    width: 150px;
+    height: 150px;
+
+    max-width: 100%;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid #ddd;
+
+    margin-bottom: 15px;
+}
+.perfil-card h2 {
+
+    color: #333;
+
+    margin-bottom: 10px;
+
+    word-break: break-word;
+}
+
+.perfil-card p {
+
+    color: #666;
+
+    margin-bottom: 25px;
+
+    word-break: break-word;
+}
+.btn-editar {
+
+    background-color: #007bff;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    width: 100%;
+}
+
+.btn-editar:hover {
+    background-color: #0056b3;
+}
+
+.btn-cerrar {
+
+    background-color: #960404;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    width: 100%;
+}
+
+.btn-cerrar:hover {
+    background-color: #eb0202;
+}
+
+@media (max-width: 480px) {
+
+    .perfil-card {
+        margin: 120px auto 40px;
+        padding: 20px;
+
+        width: 92%;
+    }
+    .perfil-card img {
+
+        width: 120px;
+        height: 120px;
+    }
+    .perfil-card h2 {
+        font-size: 22px;
+    }
+    .perfil-card p {
+        font-size: 14px;
+    }
+    .btn-editar {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

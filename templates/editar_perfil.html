@@ -1,0 +1,43 @@
+{% extends "base.html"%}
+
+{%block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='editar_perfil.css') }}">
+{% endblock %}
+
+{% block title %}
+    <title>Editar perfil</title>
+{% endblock %}
+
+{% block content%}
+
+    {% if error%}
+        <div class = "mensaje-error">
+            {{error}}
+        </div>
+    {% endif%}
+    <form action = "{{url_for('Usuario.actualizarperfil')}}"method=post enctype="multipart/form-data">
+    <label for = "nombre_usuario">Nombre</label>
+    <input 
+        type="text"
+        id = "nombre_usuario"
+        name = "nombre_usuario"
+        value = "{{user.nombre_usuario}}"
+    >
+    <label for = "mail_usuario">Email</label>
+    <input 
+        type="text"
+        id = "mail_usuario"
+        name = "mail_usuario"
+        value = "{{user.mail_usuario}}"
+    >
+    <label for = "foto_perfil">Foto de perfil</label>
+    <input 
+        type="file"
+        id = "foto_perfil"
+        name = "foto_perfil"
+        accept="image/*"
+    >
+    <button type = "submit">Guardar</button>
+    </form>
+{% endblock%}
+
