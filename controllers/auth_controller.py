@@ -1,5 +1,6 @@
 from flask import render_template,request,redirect,url_for,session
 from models.cliente import Cliente
+from models.administrador import Administrador
 from models.db import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from models.usuario import Usuario
@@ -38,9 +39,11 @@ def login():
     email=request.form["email"]
     password=request.form["password"]
 
-    usuario=Usuario.query.filter_by(email=email).first()
+    usuario=Cliente.query.filter_by(email=email).first()
     if not usuario:
-        return "Usuario no encontrado"
+        usuario=Administrador.query.filter_by(email=email).first()
+        if not usuario:
+            return "usuario no existente"
     if not check_password_hash(usuario.password,password):
         return "Contraseña incorrecta"
     
