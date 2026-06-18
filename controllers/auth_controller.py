@@ -11,7 +11,10 @@ def register():
     nombre=request.form["nombre"]
     email=request.form["email"]
     password=request.form["password"]
-
+#validar email - ver perfil (tomy) para que no pongan cualquier cosa
+#y validar cantidad de caracteres en la contraseña.
+#importar re
+#importar 
     usuario_existente=Cliente.query.filter_by(email=email).first()
     if usuario_existente:
         return "Email ya registrado"
@@ -40,11 +43,14 @@ def login():
         return "Usuario no encontrado"
     if not check_password_hash(usuario.password,password):
         return "Contraseña incorrecta"
-    session["usuario_id"]=usuario.id
+    
+    session["usuario_id"]=usuario.id 
     session["rol"]=usuario.rol
-    if usuario.rol=="ADMIN":
-        return redirect(url_for("auth.admin_dashboard"))
-    return redirect(url_for("auth.cliente_dashboard"))
+    
+    
+    #if usuario.rol=="ADMIN":
+     #   return redirect(url_for("auth.admin_dashboard"))
+    return redirect(url_for("partido.partidoproximos"))
 
 def logout():
     session.clear()
