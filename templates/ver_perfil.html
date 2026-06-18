@@ -17,9 +17,14 @@
     <p>
         {{ user.mail_usuario }}
     </p>
-    <a href="{{ url_for('Usuario.editarformulario', id=id_usuario) }}">
+    <a href="{{ url_for('Usuario.editarformulario') }}">
         <button class="btn-editar">
             Editar perfil
+        </button>
+    </a>
+    <a href="{{ url_for('auth.logout') }}">
+        <button class="btn-cerrar">
+             Cerrar Sesión
         </button>
     </a>
 </div>

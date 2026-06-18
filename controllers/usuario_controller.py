@@ -3,15 +3,16 @@ from models.usuario import Usuario
 import re
 import os
 from werkzeug.utils import secure_filename
+from flask import session
 
-def ver_usuario(id):
-    usuario = Usuario.query.get(id)
+def ver_usuario():
+    usuario = session.get(id)
     if usuario:
         return usuario
     return {"ERROR": "El usuario no existe"}
 
-def actualizar_perfil(id, data, foto=None):
-    user = Usuario.query.get(id)
+def actualizar_perfil(data, foto=None):
+    user = session.get(id)
     tipos = {
         "nombre_usuario": str,
         "mail_usuario": str,
