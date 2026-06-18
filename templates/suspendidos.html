@@ -23,7 +23,9 @@
                 <td>{{ partido.hora }}</td>
                 <td>{{ partido.nombre_estadio }}</td>
                 <td>{{ partido.etapa}}</td>
-                <td><a href="{{ url_for('partido.reprogramarPartido', partido_id=partido.id) }}" class="btn-reprogramar" >Reprogramar</a>
+                {% if session["rol"].lower() == "admin" %}
+                    <td><a href="{{ url_for('partido.reprogramarPartido', partido_id=partido.id) }}" class="btn-reprogramar" >Reprogramar</a>
+                {% endif %}
             </tr>
             {% endfor %}
         </table>
