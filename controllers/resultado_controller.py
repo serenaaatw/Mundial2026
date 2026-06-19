@@ -1,6 +1,8 @@
 from models.db import db
 from models.resultado import Resultado
 from models.partido import Partido
+from models.equipo import Equipo
+from models.estadio import Estadio
 
 def crear_resultado(partido_id, goles_equipo1, goles_equipo2):
     partido = Partido.query.get(partido_id)
@@ -20,13 +22,33 @@ def crear_resultado(partido_id, goles_equipo1, goles_equipo2):
     return resultado.serialize(), 201
 def obtener_Resultados():
     resultados = Resultado.query.all()
-    return [resultado.serialize() for resultado in resultados], 200
+    for resultado in resultados:
+        partido = Partido.query.get(resultado.partido_id)
+        if not partido:
+            continue
+        equipo1 = Equipo.query.get(partido.id_equipo1)
+        equipo2 = Equipo.query.get(partido.id_equipo2)
+        estadio = Estadio.query.get(partido.id_estadio)
+        
+        resultado.nombre_equipo1 = equipo1.pais
+        resultado.nombre_equipo2 = equipo2.pais
+
+        resultado.bandera_equipo1 = equipo1.bandera
+        resultado.bandera_equipo2 = equipo2.bandera
+
+        resultado.fecha = partido.fecha
+        resultado.hora = partido.hora
+        resultado.etapa = partido.etapa
+
+        resultado.nombre_estadio = estadio.nombre
+    return resultados
+
 
 def obtener_resultado(id_res):
     resultado = Resultado.query.get(id_res)
     if not resultado:
-        return {"error": "Resultado no encontrado"}, 404
-    return resultado.serialize(), 200
+        return None
+    return resultado
 def actualizar_resultado(id_res, goles_equipo1, goles_equipo2):
     resultado = Resultado.query.get(id_res)
     if not resultado:
