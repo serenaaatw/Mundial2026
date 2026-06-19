@@ -1,31 +1,43 @@
-from flask import Blueprint, render_template, request
-from controllers.resultado_controller import  *
+from flask import Blueprint,render_template, request, redirect, url_for
+from controllers.resultado_controller import *
 
 resultado_bp = Blueprint('resultado', __name__)
 
-@resultado_bp.route('/resultados', methods=['POST'])
-def crear_resultado_route():
-    data = request.get_json()
-    partido_id = data.get('partido_id')
-    goles_equipo1 = data.get('goles_equipo1')
-    goles_equipo2 = data.get('goles_equipo2')
-    return crear_resultado(partido_id, goles_equipo1, goles_equipo2)
-
+#listamos resultados
 @resultado_bp.route('/resultados', methods=['GET'])
-def obtener_resultados_route():
-    return obtener_Resultados()
+def obtenerResultados():
+    resultados = obtener_Resultados()
+    return render_template('resultados.html', resultados=resultados)
 
-@resultado_bp.route('/resultados/<int:id_res>', methods=['GET'])
-def obtener_resultado_route(id_res):
-    return obtener_resultado(id_res)
+#creamos formulario
+@resultado_bp.route('/resultados/nuevo')
+def formularioCrear():
+    return render_template('agregarResultado.html')
 
-@resultado_bp.route('/resultados/<int:id_res>', methods=['PUT'])
-def actualizar_resultado_route(id_res):
-    data = request.get_json()
-    goles_equipo1 = data.get('goles_equipo1')
-    goles_equipo2 = data.get('goles_equipo2')
-    return actualizar_resultado(id_res, goles_equipo1, goles_equipo2)
+#crear
+@resultado_bp.route('/resultados/crear', methods=['POST'])
+def crearResultado():
+    data = request.form.to_dict()
+    crear_resultado(data['partido_id'],int(data['goles_equipo1']),int(data['goles_equipo2']))
+    return redirect(url_for('resultado.obtenerResultados'))
 
-@resultado_bp.route('/resultados/<int:id_res>', methods=['DELETE'])
-def eliminar_resultado_route(id_res):
-    return eliminar_resultado(id_res)
+#form editar:
+@resultado_bp.route('/resultados/<int:id_res>/editar', methods=['GET'])
+def formularioEditar(id_res):
+    resultado = obtener_resultado(id_res)
+    return render_template('actualizarResultado.html', resultado=resultado)
+
+#"actualizar:"
+@resultado_bp.route('/resultados/<int:id_res>/editar', methods=['POST'])
+def actualizarResultado(id_res):
+    data = request.form.to_dict()
+    actualizar_resultado(id_res, int(data['goles_equipo1']), int(data['goles_equipo2']))
+    return redirect(url_for('resultado.obtenerResultados'))
+
+#eliminar
+@resultado_bp.route('/resultados/<int:id_res>/eliminar')
+def eliminarResultado(id_res):
+    eliminar_resultado(id_res)
+    return redirect(url_for('resultado.obtenerResultados'))
+
+
