@@ -49,10 +49,6 @@ def login():
     
     session["usuario_id"]=usuario.id 
     session["rol"]=usuario.rol
-    
-    
-    #if usuario.rol=="ADMIN":
-     #   return redirect(url_for("auth.admin_dashboard"))
     return redirect(url_for("partido.partidoproximos"))
 
 def logout():
