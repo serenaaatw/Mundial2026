@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='resultados.css') }}">
+{% endblock %}
+
+{% block title %}
+<title>Actualizar Resultado</title>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="titulo">Actualizar Resultado</h1>
+
+<a href="{{ url_for('resultado.obtenerResultados') }}" class="btn-volver">
+    Volver
+</a>
+
+<form class="form-resultado"
+      action="{{ url_for('resultado.actualizarResultado', id_res=resultado.id_res) }}"
+      method="POST">
+
+    <label>Goles Equipo 1:</label>
+    <input
+        type="number"
+        name="goles_equipo1"
+        value="{{ resultado.goles_equipo1 }}"
+        min="0"
+        required
+    >
+
+    <label>Goles Equipo 2:</label>
+    <input
+        type="number"
+        name="goles_equipo2"
+        value="{{ resultado.goles_equipo2 }}"
+        min="0"
+        required
+    >
+
+    <button type="submit">
+        Guardar Cambios
+    </button>
+
+</form>
+
+{% endblock %}
