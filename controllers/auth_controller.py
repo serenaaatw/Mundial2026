@@ -9,27 +9,36 @@ from models.usuario import Usuario
 def register():
     if request.method=="GET":
         return render_template("register.html")
-    nombre=request.form["nombre"]
-    email=request.form["email"]
-    password=request.form["password"]
-#validar email - ver perfil (tomy) para que no pongan cualquier cosa
-#y validar cantidad de caracteres en la contraseña.
-#importar re
-#importar 
-    usuario_existente=Cliente.query.filter_by(email=email).first()
-    if usuario_existente:
-        return "Email ya registrado"
-    password_hash=generate_password_hash(password)
+    #validación de email para que se coloque uno válido/correcto
+    try:
 
-    nuevo_cliente=Cliente(
-        nombre=nombre,
-        email=email,
-        password=password_hash,
-        rol="CLIENTE"
-    )
-    db.session.add(nuevo_cliente)
-    db.session.commit()
-    return redirect(url_for("auth.login"))
+        nombre=request.form["nombre"]
+        email=request.form["email"]
+        password=request.form["password"]
+        
+        if email=="":
+            raise ValueError("El email no puede estar vacío")
+        if "@" not in email:
+            raise ValueError("El email debe contener @")
+        if "." not in email:
+            raise ValueError("El email debe contener un dominio válido")
+        
+        usuario_existente=Cliente.query.filter_by(email=email).first()
+        if usuario_existente:
+            return "Email ya registrado"
+        password_hash=generate_password_hash(password)
+
+        nuevo_cliente=Cliente(
+            nombre=nombre,
+            email=email,
+            password=password_hash,
+            rol="CLIENTE"
+        )
+        db.session.add(nuevo_cliente)
+        db.session.commit()
+        return redirect(url_for("auth.login"))
+    except ValueError as error:
+        return f"Error: {error}"
 
 
 #Login
