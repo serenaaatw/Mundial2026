@@ -10,12 +10,21 @@
 <body>
     <nav class="navbar">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
+        <script>
+            function toggleMenu() {
+            document.querySelector(".navbar ul").classList.toggle("active");
+            }
+        </script>
+        <button class="menu-btn" onclick="toggleMenu()">
+        ☰
+        </button>
         <ul>
-            <li><a href="/">General</a></li>
-            <li><a href="{{ url_for('partido.obtenerPartidos') }}">Partidos</a></li>
+             <li><a href="{{ url_for('partido.partidosproximos') }}">General</a></li>
             <li><a href="{{ url_for('partido.obtenerPartidos') }}">Partidos</a></li>
            <li><a href="{{ url_for('resultado.obtenerResultados') }}">Resultados</a></li>
 
+            <li><a href="{{ url_for('partido.partidosSuspendidos') }}">Partidos Suspendidos</a></li>
+            <li><a href="{{ url_for('Usuario.verusuario') }}">Ver Perfil</a></li>
         </ul> 
     </nav>
     {% block content %}

@@ -1,0 +1,153 @@
+/* Fondo */
+body{
+    margin:0;
+    padding:0;
+
+    font-family:'Segoe UI', sans-serif;
+
+    background:#edf1f4;
+}
+
+/* Contenedor */
+.contenedor{
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+}
+
+/* Tarjeta */
+.card{
+    width:420px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Logo */
+.logo{
+    width:230px;
+
+    display:block;
+
+    margin:0 auto 20px auto;
+}
+
+/* Título */
+.card h1{
+    text-align:center;
+
+    color:#001F3F;
+
+    font-size:42px;
+
+    margin-bottom:30px;
+}
+
+/* Labels */
+.card label{
+    display:block;
+
+    color:#222;
+
+    margin-bottom:8px;
+
+    margin-top:15px;
+
+    font-size:18px;
+}
+
+/* Inputs */
+.card input{
+    width:100%;
+
+    padding:14px;
+
+    box-sizing:border-box;
+
+    border:1px solid #b8b8b8;
+
+    border-radius:8px;
+
+    font-size:18px;
+
+    margin-bottom:15px;
+}
+
+.card input:focus{
+    outline:none;
+
+    border:2px solid #75C2FF;
+}
+
+/* Botón */
+.card button{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#001F3F;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.card button:hover{
+    background:#003b75;
+}
+
+/* Links */
+.links{
+    text-align:center;
+
+    margin-top:25px;
+
+    font-size:18px;
+}
+
+.links a{
+    color:#75C2FF;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+.links a:hover{
+    color:#001F3F;
+}
+
+/* Responsive */
+@media(max-width:500px){
+
+    .card{
+        width:90%;
+
+        padding:25px;
+    }
+
+    .logo{
+        width:180px;
+    }
+
+    .card h1{
+        font-size:32px;
+    }
+}

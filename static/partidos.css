@@ -39,6 +39,11 @@ body{
     color:white;
     font-weight:bold;
     margin:0 3px;
+    display: inline-block;
+    width: 95px;
+    height: 20px;
+    text-align: center;
+    font-size: 15px;
 }
 
 .btn-editar{
@@ -79,4 +84,34 @@ h1{
     color:#001f3f;
     margin-top:20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tabla-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px){
+
+    .tabla-partidos{
+        min-width: 1000px;
+    }
+
+    .tabla-partidos td{
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .tabla-partidos img{
+        width: 20px;
+        height: auto;
+    }
+
+    .btn-agregar,
+    .btn-editar,
+    .btn-eliminar{
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
 }

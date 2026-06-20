@@ -23,6 +23,7 @@ MYSQL_PASSWORD=<tu_contraseña>
 MYSQL_DATABASE=<nombre_de_la_base>
 MYSQL_HOST=<host_de_mysql>
 MYSQL_PORT=<puerto_de_mysql>
+API_KEY = <clave_openweather>
 ```
 
 ---
@@ -65,6 +66,14 @@ python app.py
 ## Aporte de cada integrante
 
 ### Tomás Caballero
+- Creacion controlador usuario
+- Creacion ruta usuario(ver, editar y actualizar)
+- Creación ver perfil html
+- Creación editar perfil html
+- Creación ver perfil css
+- Creacion editar perfil css
+- Cargar foto de perfil en perfil
+- Validar direccion de correo 
 
 ### Uriel Martinez
 
@@ -82,6 +91,7 @@ python app.py
 - Estadio controller
 - Partido css
 - Endpoint partido (CRUD)
+- Validaciones al actualiza partido
 
 ### Diego Caipe
 

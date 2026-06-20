@@ -7,65 +7,127 @@
     <title>Partido</title>
 {% endblock %}
 
-{% block content %} 
+{% block content %}
+ 
+    {% if error %}
+          <div class="mensaje-error">
+                {{ error }}
+          </div>
+     {% endif %}
+
     <form class="form-partido" action="{{ url_for('partido.crearPartido') }}" method="post">
 
-    <label for="equipo1_id">ID Equipo 1:</label>
-    <input
+    <div>
+        <label for="equipo1_id">ID Equipo 1:</label>
+        <input
         type="text"
         id="equipo1_id"
-        name="id_equipo1"
-    >
+        name="id_equipo1">
+    </div>
 
-    <br><br>
-
-    <label for="equipo2_id">ID Equipo 2:</label>
-    <input
+    <div>
+        <label for="equipo2_id">ID Equipo 2:</label>
+        <input
         type="text"
         id="equipo2_id"
-        name="id_equipo2"
-    >
+        name="id_equipo2">
+    </div>
 
-    <br><br>
-
-    <label for="idestadio">ID Estadio:</label>
-    <input
+    <div>
+        <label for="idestadio">ID Estadio:</label>
+        <input
         type="text"
         id="idestadio"
-        name="id_estadio"
-    >
-    <br><br>
-
-    <label for="fecha">Fecha:</label>
-    <input
+        name="id_estadio">
+    </div>    
+    
+    <div>
+        <label for="fecha">Fecha:</label>
+        <input
         type="text"
         id="fecha"
-        name="fecha"
-    >
-    <br><br>
-
-    <label for="hora">Hora:</label> 
-    <input
+        name="fecha">
+    </div>
+    
+    <div>
+        <label for="hora">Hora:</label> 
+        <input
         type="text"
         id="hora"
-        name="hora"
-    >
-    <br><br>
-    <label for="estado">Estado:</label>
-    <input
+        name="hora">
+    </div>
+
+    <div>
+        <label for="estado">Estado:</label>
+        <input
         type="text"
         id="estado"
-        name="estado"
-    >
-    <br><br>
-    <label for="etapa">Etapa:</label>
-    <input
+        name="estado">
+    </div>    
+
+    <div>
+        <label for="etapa">Etapa:</label>
+        <input
         type="text"
         id="etapa"
-        name="etapa"
-    >
-    <br><br>
+        name="etapa">
+    </div>
+
     <button type="submit">Guardar cambios</button>
     </form>
 
+    <div class="tabla-container">
+        <table class="tabla-estadios">
+            <caption>LISTA DE ESTADIOS</caption>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>País</th>
+                    <th>Ciudad</th>
+                    <th>Capacidad</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for estadio in estadios %}
+                <tr>
+                    <td>{{ estadio.id }}</td>
+                    <td>{{ estadio.nombre }}</td>
+                    <td>{{ estadio.pais }}</td>
+                    <td>{{ estadio.ciudad }}</td>
+                    <td>{{ estadio.capacidad }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="tabla-container">
+        <table class="tabla-equipos">
+            <caption>LISTA DE EQUIPOS</caption>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>País</th>
+                    <th>Bandera</th>
+                    <th>Grupo</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for equipo in equipos %}
+                <tr>
+                    <td>{{ equipo.id }}</td>
+                    <td>{{ equipo.pais }}</td>
+                    <td><img src="{{ url_for('static', filename=equipo.bandera) }}" alt="Bandera" width="30"></td>
+                    <td>{{ equipo.grupo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

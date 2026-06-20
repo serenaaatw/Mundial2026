@@ -1,0 +1,76 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+.tabla-partidos{
+    width:95%;
+    margin:30px auto;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tabla-partidos caption{
+    background:#001f3f;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:1.5em;
+    font-weight:bold;
+}
+
+.tabla-partidos td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+.tabla-partidos tr:hover{
+    background:#f5f5f5;
+}
+
+.btn-reprogramar{
+    padding:8px 12px;
+    text-decoration:none;
+    border-radius:5px;
+    color:white;
+    font-weight:bold;
+    margin:0 3px;
+    background:#ce3232;
+}
+
+.btn-reprogramar:hover{
+    background:#881212;
+}
+
+.tabla-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px){
+
+    .tabla-partidos{
+        min-width: 700px;
+    }
+
+    .tabla-partidos caption{
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    .tabla-partidos td,
+    .tabla-partidos th{
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .btn-reprogramar{
+        display: inline-block;
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+}
