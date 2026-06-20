@@ -1,124 +1,123 @@
+/* Fondo */
 body{
-
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-    background-color:#f4f4f4;
-
     margin:0;
-}
-/*principal*/
-.auth-container{
+    padding:0;
+    font-family:Segoe UI, sans-serif;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+    background: linear-gradient(
+        90deg,
+        #0046d5,
+        #7c82ff
+    );
 
     min-height:100vh;
 }
-/*tarjeta formulario*/
-.auth-card{
 
-    background:white;
-
-    width:90%;
-
-    max-width:450px;
-
-    padding:30px;
-
-    border-radius:12px;
-
-    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+/* Centrado */
+.contenedor{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
 }
-.auth-card h1{
 
+/* Tarjeta */
+.card{
+    background:#f2f2f2;
+
+    width:400px;
+
+    padding:40px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Título */
+.card h1{
     text-align:center;
-
-    color:#001f3f;
-
-    margin-bottom:25px;
+    margin-bottom:40px;
+    font-size:42px;
 }
-/*formulario*/
-.auth-card label{
 
+/* Etiquetas */
+.card label{
     display:block;
+    margin-bottom:8px;
+    margin-top:15px;
 
-    margin-bottom:5px;
+    font-weight:bold;
 
-    font-weight:600;
-
-    color:#333;
+    font-size:18px;
 }
-.auth-card label{
 
-    display:block;
-
-    margin-bottom:5px;
-
-    font-weight:600;
-
-    color:#333;
-}
-.auth-card input:focus{
-
-    outline:none;
-
-    border-color:#001f3f;
-}
-/*boton*/
-.auth-card button{
-
+/* Inputs */
+.card input{
     width:100%;
 
     padding:12px;
 
-    background:#001f3f;
+    box-sizing:border-box;
 
-    color:white;
-
-    border:none;
-
-    border-radius:6px;
-
-    cursor:pointer;
+    border:1px solid #bbb;
 
     font-size:16px;
 
+    margin-bottom:10px;
+}
+
+/* Botones */
+.card button{
+    width:100%;
+
+    margin-top:25px;
+
+    padding:12px;
+
+    border:none;
+
+    background:#2369b5;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
     transition:0.3s;
 }
-.auth-card button:hover{
 
-    background:#003366;
+.card button:hover{
+    background:#184d88;
 }
-/*links*/
-.auth-card a{
 
+/* Enlace */
+.card a{
     display:block;
 
     text-align:center;
 
-    margin-top:15px;
+    margin-top:20px;
 
     text-decoration:none;
 
-    color:#001f3f;
+    color:#2369b5;
 
-    font-weight:600;
+    font-weight:bold;
 }
-.auth-card a:hover{
 
+.card a:hover{
     text-decoration:underline;
 }
-/*responsive*/
-@media(max-width:768px){
 
-    .auth-card{
+/* Responsive */
+@media(max-width:500px){
 
-        width:95%;
-
-        padding:20px;
+    .card{
+        width:90%;
+        padding:25px;
     }
 
+    .card h1{
+        font-size:32px;
+    }
 }

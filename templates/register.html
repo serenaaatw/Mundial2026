@@ -1,33 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
     <title>Registro</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='auth.css') }}">
 </head>
+
 <body>
-    <h1>Registro de Usuario</h1>
 
-<form method="POST">
+    <div class="contenedor">
 
-    <input type="text" name="nombre" placeholder="Nombre">
+        <div class="card">
 
-    <br><br>
+            <h1>Registro</h1>
 
-    <input type="email" name="email" placeholder="Email">
+            <form method="POST">
 
-    <br><br>
+                <label>Nombre</label>
 
-    <input type="password" name="password" placeholder="Contraseña">
+                <input type="text"
+                       name="nombre"
+                       placeholder="Ingrese nombre..."
+                       required>
 
-    <br><br>
+                <label>Email</label>
 
-    <button type="submit">
-        Registrarse
-    </button>
+                <input type="email"
+                       name="email"
+                       placeholder="Ingrese email..."
+                       required>
 
-</form>
+                <label>Contraseña</label>
+
+                <input type="password"
+                       name="password"
+                       placeholder="Ingrese contraseña..."
+                       required>
+
+                <button type="submit">
+                    Registrarse
+                </button>
+
+            </form>
+
+            <a href="{{ url_for('auth.login_route') }}">
+                Ya tengo cuenta
+            </a>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
