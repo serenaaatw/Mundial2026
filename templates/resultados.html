@@ -15,10 +15,13 @@
 <a href="{{ url_for('partido.obtenerPartidos') }}" class="btn-volver">
     Volver a Partidos
 </a>
-<! -- cuando implemente el login, agregar un if para mostrar el boton de agregar resultado solo a los admin ->
+<!-- cuando implemente el login, agregar un if para mostrar el boton de agregar resultado solo a los admin -->
 <a href="{{ url_for('resultado.formularioCrear') }}" class="btn-agregar">
     Agregar Resultado
 </a>
+{% if erroreditar %}
+    <div class="error">{{ erroreditar }}</div>
+{% endif %}
 <div class="tabla-container">
 <table class="tabla-resultados">
 
@@ -63,7 +66,7 @@
             <a class="btn-editar" href="{{ url_for('resultado.formularioEditar', id_res=resultado.id_res) }}">
               Editar
             </a>
-            <a class="btn-eliminar" href="{{ url_for('resultado.eliminarResultado', id_res=resultado.id_res) }}
+            <a class="btn-eliminar" href="{{ url_for('resultado.eliminarResultado', id_res=resultado.id_res) }}">
               Eliminar
             </a>
         </td>

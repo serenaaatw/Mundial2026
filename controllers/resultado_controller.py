@@ -7,11 +7,11 @@ from models.estadio import Estadio
 def crear_resultado(partido_id, goles_equipo1, goles_equipo2):
     partido = Partido.query.get(partido_id)
     if not partido:
-        return {"error": "Partido no encontrado"}, 404
+        raise ValueError ("Partido no encontrado o inexistente.Verifique el ID ingresado e intente nuevamente.")
     if goles_equipo1 < 0 or goles_equipo2 < 0:
-        return {"error": "Los goles no pueden ser negativos"}, 400
+        raise ValueError ("Los goles no pueden ser negativos")
     if Resultado.query.filter_by(partido_id=partido_id).first():
-        return {"error": "Ya existe un resultado para este partido"}, 400
+        raise ValueError ("Ya existe un resultado para este partido.Si desea modificarlo, utilice la opción [Editar] en el panel de resultados.")
     resultado = Resultado(
         partido_id=partido_id,
         goles_equipo1=goles_equipo1,
@@ -25,7 +25,7 @@ def obtener_Resultados():
     for resultado in resultados:
         partido = Partido.query.get(resultado.partido_id)
         if not partido:
-            continue
+            raise ValueError("Partido no encontrado")
         equipo1 = Equipo.query.get(partido.id_equipo1)
         equipo2 = Equipo.query.get(partido.id_equipo2)
         estadio = Estadio.query.get(partido.id_estadio)
@@ -41,6 +41,7 @@ def obtener_Resultados():
         resultado.etapa = partido.etapa
 
         resultado.nombre_estadio = estadio.nombre
+        
     return resultados
 
 

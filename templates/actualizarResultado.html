@@ -11,7 +11,9 @@
 {% block content %}
 
 <h1 class="titulo">Actualizar Resultado</h1>
-
+<h3 class="partido-editar">
+    {{ resultado.nombre_equipo1 }} vs {{ resultado.nombre_equipo2 }}
+</h3>
 <a href="{{ url_for('resultado.obtenerResultados') }}" class="btn-volver">
     Volver
 </a>
