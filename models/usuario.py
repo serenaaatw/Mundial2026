@@ -10,11 +10,7 @@ class Usuario(db.Model):
     #polomorfismo de herencia para identificar en el programa que objeto crear teniendo en cienta el atributo rol
     __mapper_args__={"polymorphic_on":rol,
                      "polymorphic_identity":"usuario"}
-    #encapsulamiento de contraseña
-    def set_password(self,password):
-        self.password=generate_password_hash(password)
-    def check_password(self,password):
-        return check_password_hash(self.password,password)
+    
     def __init__(self,nombre,email,password,rol):
         self.nombre=nombre
         self.email=email
@@ -28,3 +24,9 @@ class Usuario(db.Model):
             "password":self.password,
             "rol":self.rol
         }
+    #encapsulamiento de contraseña.
+
+    def set_password(self,password):
+        self.password=generate_password_hash(password)
+    def check_password(self,password):
+        return check_password_hash(self.password,password)

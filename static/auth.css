@@ -2,50 +2,65 @@
 body{
     margin:0;
     padding:0;
-    font-family:Segoe UI, sans-serif;
 
-    background: linear-gradient(
-        90deg,
-        #0046d5,
-        #7c82ff
-    );
+    font-family:'Segoe UI', sans-serif;
 
-    min-height:100vh;
+    background:#edf1f4;
 }
 
-/* Centrado */
+/* Contenedor */
 .contenedor{
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     min-height:100vh;
 }
 
 /* Tarjeta */
 .card{
-    background:#f2f2f2;
+    width:420px;
 
-    width:400px;
+    background:white;
 
     padding:40px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Logo */
+.logo{
+    width:230px;
+
+    display:block;
+
+    margin:0 auto 20px auto;
 }
 
 /* Título */
 .card h1{
     text-align:center;
-    margin-bottom:40px;
+
+    color:#001F3F;
+
     font-size:42px;
+
+    margin-bottom:30px;
 }
 
-/* Etiquetas */
+/* Labels */
 .card label{
     display:block;
-    margin-bottom:8px;
-    margin-top:15px;
 
-    font-weight:bold;
+    color:#222;
+
+    margin-bottom:8px;
+
+    margin-top:15px;
 
     font-size:18px;
 }
@@ -54,32 +69,40 @@ body{
 .card input{
     width:100%;
 
-    padding:12px;
+    padding:14px;
 
     box-sizing:border-box;
 
-    border:1px solid #bbb;
+    border:1px solid #b8b8b8;
 
-    font-size:16px;
+    border-radius:8px;
 
-    margin-bottom:10px;
+    font-size:18px;
+
+    margin-bottom:15px;
 }
 
-/* Botones */
+.card input:focus{
+    outline:none;
+
+    border:2px solid #75C2FF;
+}
+
+/* Botón */
 .card button{
     width:100%;
 
-    margin-top:25px;
-
-    padding:12px;
+    padding:14px;
 
     border:none;
 
-    background:#2369b5;
+    border-radius:8px;
+
+    background:#001F3F;
 
     color:white;
 
-    font-size:18px;
+    font-size:22px;
 
     cursor:pointer;
 
@@ -87,26 +110,28 @@ body{
 }
 
 .card button:hover{
-    background:#184d88;
+    background:#003b75;
 }
 
-/* Enlace */
-.card a{
-    display:block;
-
+/* Links */
+.links{
     text-align:center;
 
-    margin-top:20px;
+    margin-top:25px;
+
+    font-size:18px;
+}
+
+.links a{
+    color:#75C2FF;
 
     text-decoration:none;
-
-    color:#2369b5;
 
     font-weight:bold;
 }
 
-.card a:hover{
-    text-decoration:underline;
+.links a:hover{
+    color:#001F3F;
 }
 
 /* Responsive */
@@ -114,7 +139,12 @@ body{
 
     .card{
         width:90%;
+
         padding:25px;
+    }
+
+    .logo{
+        width:180px;
     }
 
     .card h1{

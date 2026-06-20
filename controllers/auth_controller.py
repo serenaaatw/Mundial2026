@@ -2,7 +2,6 @@ from flask import render_template,request,redirect,url_for,session
 from models.cliente import Cliente
 from models.administrador import Administrador
 from models.db import db
-from werkzeug.security import generate_password_hash,check_password_hash
 from models.usuario import Usuario
 
 #REGISTRO
@@ -32,15 +31,16 @@ def register():
         if usuario_existente:
             return "Email ya registrado"
 
-        password_hash = generate_password_hash(password)
 
         nuevo_cliente = Cliente(
             nombre=nombre,
             email=email,
-            password=password_hash,
+            password="",
             rol="CLIENTE"
         )
-
+        # Encriptar contraseña
+        nuevo_cliente.set_password(password)
+        
         db.session.add(nuevo_cliente)
         db.session.commit()
 
@@ -52,22 +52,30 @@ def register():
         return f"Error: {error}"
 
 #Login
-def login(): 
-    if request.method=="GET": 
-        return render_template("login.html") 
-    email=request.form["email"] 
-    password=request.form["password"]
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
 
-    usuario=Cliente.query.filter_by(email=email).first()
-    if not usuario: 
-        usuario=Administrador.query.filter_by(email=email).first()
-        if not usuario: 
-            return "usuario no existente"
-    if not check_password_hash(usuario.password,password): 
-        return "Contraseña incorrecta" 
-    session["usuario_id"]=usuario.id 
-    session["rol"]=usuario.rol 
-    return redirect(url_for("partido.partidoproximos"))
+    email = request.form["email"]
+    password = request.form["password"]
+
+    usuario = Cliente.query.filter_by(email=email).first()
+
+    if not usuario:
+        usuario = Administrador.query.filter_by(email=email).first()
+
+        if not usuario:
+            return "Usuario no existente"
+
+    
+    if not usuario.check_password(password):
+        return "Contraseña incorrecta"
+
+    session["usuario_id"] = usuario.id
+    session["rol"] = usuario.rol
+
+    return redirect(url_for("partido.partidosproximos"))
+
 def logout():
     session.clear()
 
