@@ -99,8 +99,19 @@ python app.py
 - Validaciones al actualiza partido
 
 ### Diego Caipe
-
----
+- Creación del modelo Resultado.
+- Creación del controlador de Resultados.
+- Creación de las rutas de Resultados.
+- Creación de resultados.html.
+- Creación de agregarResultado.html.
+- Creación de actualizarResultado.html.
+- Creación de resultados.css.
+- Implementación del CRUD de resultados.
+- Validaciones para la carga y actualización de resultados.
+- Implementación de autenticación mediante sesiones.
+- Protección de rutas con login_required.
+- Implementación de control de roles (ADMIN y CLIENTE).
+- Restricción de acceso a funcionalidades exclusivas para administradores.
 
 ## Trabajo grupal
 - Configuración de la aplicación
