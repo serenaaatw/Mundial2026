@@ -15,10 +15,12 @@
 <a href="{{ url_for('partido.obtenerPartidos') }}" class="btn-volver">
     Volver a Partidos
 </a>
-<!-- cuando implemente el login, agregar un if para mostrar el boton de agregar resultado solo a los admin -->
-<a href="{{ url_for('resultado.formularioCrear') }}" class="btn-agregar">
-    Agregar Resultado
-</a>
+{% if session.get("rol") == "ADMIN" %}
+    <a href="{{ url_for('resultado.formularioCrear') }}" class="btn-agregar">
+        Agregar Resultado
+    </a>
+{% endif %}
+
 {% if erroreditar %}
     <div class="error">{{ erroreditar }}</div>
 {% endif %}
@@ -40,7 +42,9 @@
         <th>Hora</th>
         <th>Estadio</th>
         <th>Etapa</th>
-        <th>Acciones</th>
+        {% if session.get("rol") == "ADMIN" %}
+         <th>Acciones</th>
+        {% endif %}
     </tr>
 
     {% for resultado in resultados %}
@@ -62,14 +66,19 @@
         <td>{{ resultado.hora }}</td>
         <td>{{ resultado.nombre_estadio }}</td>
         <td>{{ resultado.etapa }}</td>
+    
+        {% if session.get("rol") == "ADMIN" %}
         <td>
-            <a class="btn-editar" href="{{ url_for('resultado.formularioEditar', id_res=resultado.id_res) }}">
-              Editar
+            <a class="btn-editar"
+             href="{{ url_for('resultado.formularioEditar', id_res=resultado.id_res) }}">
+             Editar
             </a>
-            <a class="btn-eliminar" href="{{ url_for('resultado.eliminarResultado', id_res=resultado.id_res) }}">
-              Eliminar
+            <a class="btn-eliminar"
+               href="{{ url_for('resultado.eliminarResultado', id_res=resultado.id_res) }}">
+               Eliminar
             </a>
         </td>
+        {% endif %}
     </tr>
 
     {% endfor %}

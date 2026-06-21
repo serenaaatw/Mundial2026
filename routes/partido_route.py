@@ -3,7 +3,6 @@ from controllers.partido_controller import *
 from controllers.equipo_controller import ver_equipos
 from controllers.estadio_controller import ver_estadios
 from utils.auth import login_required
-
 partido_bp = Blueprint('partido', __name__)
 
 @partido_bp.route('/partidos/crear', methods=['POST'])
