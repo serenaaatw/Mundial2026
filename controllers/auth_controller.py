@@ -4,7 +4,7 @@ from models.administrador import Administrador
 from models.db import db
 from models.usuario import Usuario
 
-#REGISTRO
+
 # REGISTRO
 def register():
     if request.method == "GET":
@@ -21,8 +21,11 @@ def register():
         if "@" not in email:
             raise ValueError("El email debe contener @")
 
-        if "." not in email:
-            raise ValueError("El email debe contener un dominio válido")
+        if not (email.endswith(".com") or email.endswith(".com.ar")):
+            raise ValueError("El email debe contener un dominio válido (.com) o (.com.ar)")
+        
+        if len(password) < 6:
+            raise ValueError("La contraseña debe tener al menos 6 caracteres")
 
         usuario_existente = Cliente.query.filter_by(
             email=email
@@ -50,7 +53,7 @@ def register():
         )
 
     except ValueError as error:
-        return f"Error: {error}"
+        return render_template("register.html", error=str(error))
 
 #Login
 def login():
