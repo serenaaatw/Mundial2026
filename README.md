@@ -76,7 +76,12 @@ python app.py
 - Validar direccion de correo 
 
 ### Uriel Martinez
-
+- Creación de modelo Usuario.
+- Creación de modelo Administrador.
+- Creación de modelo Cliente.
+- Creación del auth controler (register,login,loguot)
+- Rutas correspodientes al register, login y logout.
+- Creación de aut.html y static css (estructuta y visulización).
 ### Serena Vargas
 - Creación modelo equipo
 - Creación modelo estadio
