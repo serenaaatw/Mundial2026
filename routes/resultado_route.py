@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template, request, redirect, url_for
+from flask import Blueprint,render_template, request, redirect, url_for,session
 from controllers.resultado_controller import *
 from controllers.partido_controller import *
 from controllers.equipo_controller import *
@@ -22,6 +22,8 @@ def obtenerResultados():
 @resultado_bp.route('/resultados/nuevo')
 @login_required
 def formularioCrear():
+    if session.get("rol") != "ADMIN":
+        return redirect(url_for("resultado.obtenerResultados"))
     partidos = obtener_partidos() 
     return render_template('agregarResultado.html', partidos=partidos)
 
@@ -29,6 +31,8 @@ def formularioCrear():
 @resultado_bp.route('/resultados/crear', methods=['POST'])
 @login_required
 def crearResultado():
+    if session.get("rol") != "ADMIN":
+        return redirect(url_for("resultado.obtenerResultados"))
     data = request.form.to_dict()
     try: 
         crear_resultado(int(data['partido_id']),int(data['goles_equipo1']),int(data['goles_equipo2']))
@@ -40,6 +44,8 @@ def crearResultado():
 @resultado_bp.route('/resultados/<int:id_res>/editar', methods=['GET'])
 @login_required
 def formularioEditar(id_res):
+    if session.get("rol") != "ADMIN":
+        return redirect(url_for("resultado.obtenerResultados"))
     resultado = obtener_resultado(id_res)
     if not resultado:
         resultados = obtener_Resultados()
@@ -57,6 +63,8 @@ def formularioEditar(id_res):
 @resultado_bp.route('/resultados/<int:id_res>/editar', methods=['POST'])
 @login_required
 def actualizarResultado(id_res):
+    if session.get("rol") != "ADMIN":
+        return redirect(url_for("resultado.obtenerResultados"))
     data = request.form.to_dict()
     actualizar_resultado(id_res, int(data['goles_equipo1']), int(data['goles_equipo2']))
     return redirect(url_for('resultado.obtenerResultados'))
@@ -65,6 +73,8 @@ def actualizarResultado(id_res):
 @resultado_bp.route('/resultados/<int:id_res>/eliminar')
 @login_required
 def eliminarResultado(id_res):
+    if session.get("rol") != "ADMIN":
+        return redirect(url_for("resultado.obtenerResultados"))
     eliminar_resultado(id_res)
     return redirect(url_for('resultado.obtenerResultados'))
 
