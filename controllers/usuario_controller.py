@@ -25,23 +25,27 @@ def actualizar_perfil(data, foto=None):
         "foto_perfil": str
     }
     if user:
+        usuario_existente = Usuario.query.filter(
+        Usuario.email == data["email"],
+        Usuario.id != id_usuario
+        ).first()
+        if usuario_existente:
+            raise ValueError("Email ya registrado en otra cuenta")
+
         if foto and foto.filename != "":
             carpeta = "static/uploads"
             if not os.path.exists(carpeta):
                 os.makedirs(carpeta)
             nombre_imagen = str(uuid4()) + "_" + secure_filename(foto.filename)
-
             ruta = os.path.join(carpeta, nombre_imagen)
-            if os.path.exists(ruta):
-                raise ValueError(
-                    "Ya existe una imagen con ese nombre, elegí otra"
-                )
             foto.save(ruta)
             user.foto_perfil = "uploads/" + nombre_imagen
         for key, value in data.items():
             if key in tipos:
                 value = tipos[key](value)
             if key == "email":
+                if not (value.endswith(".com") or value.endswith(".com.ar")):
+                    raise ValueError("El email debe contener un dominio válido (.com) o (.com.ar)")
 
                 patron = r"^[\w\.-]+@[\w\.-]+\.\w+$"
 

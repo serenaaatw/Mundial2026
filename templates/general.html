@@ -10,8 +10,6 @@
 
 {% block content %}
 
-<h2 class="titulo">Próximo partido</h2>
-
 {% if destacado %}
 
 <div class="tarjeta-partido">
@@ -76,7 +74,7 @@
             <tr>
                  
                 <td>{{ partido.nombre_equipo1 }}</td>
-                
+
                 <td>
                     <img src="{{url_for('static', filename=partido.bandera_equipo1)}}" width="35">
                 </td>

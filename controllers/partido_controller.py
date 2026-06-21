@@ -36,9 +36,6 @@ def crear_partido(data):
         fecha_hora = datetime.strptime(f"{data['fecha']} {data['hora']}", "%Y-%m-%d %H:%M:%S")
     except ValueError:
         raise ValueError("Fecha u hora inválida. Use YYYY-MM-DD y HH:MM:SS")
-
-    if fecha_hora < datetime.now():
-       raise ValueError("La fecha y hora no pueden ser anteriores al momento actual")
     
     estado= data["estado"].lower()
 
@@ -143,10 +140,11 @@ def actualizar_partido(partido_id, data):
         hora=hora
     ).first()
 
-    if partido_existente:
+    estado= data["estado"].lower()
+
+    if partido_existente and not estado=="finalizado":
         raise ValueError("Ya existe un partido en esta fecha, hora y estadio.")
     
-    estado= data["estado"].lower()
     
     if estado not in ESTADOS:
             raise ValueError("Estados posibles: Programado, Suspendido, Finalizado, Reprogramado")
