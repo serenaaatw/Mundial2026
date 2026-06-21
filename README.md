@@ -14,7 +14,7 @@ WorldCup Manager es una aplicación web desarrollada con Flask y SQLAlchemy que 
     
 ---
 
-## Configuración de la base de datos
+## Configuración de la app
 
 Antes de ejecutar la aplicación, debes configurar las siguientes variables de entorno:
 
