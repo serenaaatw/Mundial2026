@@ -1,5 +1,6 @@
 from flask import Blueprint
 from controllers.auth_controller import register,login,logout
+
 auth_bp=Blueprint("auth",__name__)
 #ruta registro
 @auth_bp.route("/register", methods=["GET","POST"])

@@ -1,4 +1,4 @@
-/* Fondo */
+
 body{
     margin:0;
     padding:0;
@@ -8,7 +8,6 @@ body{
     background:#edf1f4;
 }
 
-/* Contenedor */
 .contenedor{
     display:flex;
 
@@ -19,11 +18,11 @@ body{
     min-height:100vh;
 }
 
-/* Tarjeta */
+
 .card{
     width:420px;
 
-    background:white;
+    background:#FFFF;
 
     padding:40px;
 
@@ -32,7 +31,7 @@ body{
     box-shadow:0 8px 25px rgba(0,0,0,0.15);
 }
 
-/* Logo */
+
 .logo{
     width:230px;
 
@@ -41,7 +40,7 @@ body{
     margin:0 auto 20px auto;
 }
 
-/* Título */
+
 .card h1{
     text-align:center;
 
@@ -52,7 +51,6 @@ body{
     margin-bottom:30px;
 }
 
-/* Labels */
 .card label{
     display:block;
 
@@ -65,7 +63,7 @@ body{
     font-size:18px;
 }
 
-/* Inputs */
+
 .card input{
     width:100%;
 
@@ -88,7 +86,7 @@ body{
     border:2px solid #75C2FF;
 }
 
-/* Botón */
+
 .card button{
     width:100%;
 
@@ -113,7 +111,7 @@ body{
     background:#003b75;
 }
 
-/* Links */
+
 .links{
     text-align:center;
 
@@ -148,6 +146,7 @@ body{
 
 
 /* Responsive */
+
 @media(max-width:500px){
 
     .card{

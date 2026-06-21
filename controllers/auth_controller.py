@@ -80,6 +80,7 @@ def login():
 
     return redirect(url_for("partido.partidosproximos"))
 
+
 def logout():
     session.clear()
 

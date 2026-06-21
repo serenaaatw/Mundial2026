@@ -4,18 +4,24 @@ import re
 import os
 from werkzeug.utils import secure_filename
 from flask import session
+from uuid import uuid4
 
 def ver_usuario():
-    usuario = session.get(id)
-    if usuario:
-        return usuario
+    id_usuario = session.get("usuario_id")
+
+    if id_usuario:
+        usuario = Usuario.query.get(id_usuario)
+        if usuario:
+            return usuario
+
     return {"ERROR": "El usuario no existe"}
 
 def actualizar_perfil(data, foto=None):
-    user = session.get(id)
+    id_usuario = session.get("usuario_id")
+    user = Usuario.query.get(id_usuario)
     tipos = {
-        "nombre_usuario": str,
-        "mail_usuario": str,
+        "nombre": str,
+        "email": str,
         "foto_perfil": str
     }
     if user:
@@ -23,7 +29,8 @@ def actualizar_perfil(data, foto=None):
             carpeta = "static/uploads"
             if not os.path.exists(carpeta):
                 os.makedirs(carpeta)
-            nombre_imagen = secure_filename(foto.filename)
+            nombre_imagen = str(uuid4()) + "_" + secure_filename(foto.filename)
+
             ruta = os.path.join(carpeta, nombre_imagen)
             if os.path.exists(ruta):
                 raise ValueError(
@@ -34,7 +41,7 @@ def actualizar_perfil(data, foto=None):
         for key, value in data.items():
             if key in tipos:
                 value = tipos[key](value)
-            if key == "mail_usuario":
+            if key == "email":
 
                 patron = r"^[\w\.-]+@[\w\.-]+\.\w+$"
 
