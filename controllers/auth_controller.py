@@ -27,12 +27,12 @@ def register():
         if len(password) < 6:
             raise ValueError("La contraseña debe tener al menos 6 caracteres")
 
-        usuario_existente = Cliente.query.filter_by(
+        usuario_existente = Usuario.query.filter_by(
             email=email
         ).first()
 
         if usuario_existente:
-            return "Email ya registrado"
+            raise ValueError("Email ya registrado")
 
 
         nuevo_cliente = Cliente(
@@ -59,26 +59,28 @@ def register():
 def login():
     if request.method == "GET":
         return render_template("login.html")
+    
+    try:
+         email = request.form["email"]
+         password = request.form["password"]
 
-    email = request.form["email"]
-    password = request.form["password"]
+         usuario = Cliente.query.filter_by(email=email).first()
 
-    usuario = Cliente.query.filter_by(email=email).first()
-
-    if not usuario:
-        usuario = Administrador.query.filter_by(email=email).first()
-
-        if not usuario:
-            return "Usuario no existente"
+         if not usuario:
+            usuario = Administrador.query.filter_by(email=email).first()
+            if not usuario:
+                raise ValueError( "Usuario no existente")
 
     
-    if not usuario.check_password(password):
-        return "Contraseña incorrecta"
+         if not usuario.check_password(password):
+            raise ValueError("Contraseña incorrecta")
 
-    session["usuario_id"] = usuario.id
-    session["rol"] = usuario.rol
+         session["usuario_id"] = usuario.id
+         session["rol"] = usuario.rol
 
-    return redirect(url_for("partido.partidosproximos"))
+         return redirect(url_for("partido.partidosproximos"))
+    except ValueError as error:
+        return render_template("login.html", error=str(error))
 
 
 def logout():

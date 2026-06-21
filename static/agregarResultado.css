@@ -36,9 +36,9 @@
 }
 
 .btn-volver {
-    display: inline-block;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
     padding: 10px 15px;
     background: #ccc;
     color: black;

@@ -1,4 +1,3 @@
-# Sistema de Gestión de partidos del mundial 2026
 # WORLDCUP MANAGER
 
 ## Integrantes del grupo
@@ -10,7 +9,7 @@
 ---
 
 ## Descripción breve
-Este proyecto consiste en una aplicación desarrollada para gestionar todos los partidos del mundial 2026. Creando un sistema completo aplicando ----
+WorldCup Manager es una aplicación web desarrollada con Flask y SQLAlchemy que permite gestionar los partidos del Mundial 2026. Los usuarios pueden consultar próximos encuentros, resultados, partidos suspendidos e información general relacionada con la competición. Además, los administradores disponen de funcionalidades CRUD para la gestión completa de los datos.
 ---
 
 ## Configuración de la base de datos
@@ -23,10 +22,18 @@ MYSQL_PASSWORD=<tu_contraseña>
 MYSQL_DATABASE=<nombre_de_la_base>
 MYSQL_HOST=<host_de_mysql>
 MYSQL_PORT=<puerto_de_mysql>
-API_KEY = <clave_openweather>
+API_KEY=<clave_openweather>
+SECRET_KEY=<clave_de_sesión>
 ```
+Debe crear una cuenta en OpenWeather y obtener la clave de la API, con el plan gratuito es suficiente.
 
 ---
+
+## Requisitos
+
+- Python 3.10 o superior
+- MySQL
+- Cuenta de OpenWeather
 
 ## Cómo ejecutar el proyecto
 
@@ -50,70 +57,44 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-
+### 5. Roles
+    Para acceder a las funcionalidades de administrador es necesario que cambie su rol desde la base de datos. Esto se implementa con el objetivo de proteger la aplicación frente a otros usuarios.
+```sql
+UPDATE usuarios
+SET rol = 'admin'
+WHERE email = 'correo@ejemplo.com';
+```
+### 6. Rutas
+    Para comenzar a utilizar la aplicación, abra en el navegador: http://localhost:5000/login
 ---
 
 ## Endpoints implementados
 
-- GET /partidos
-- POST /partidos
-- DELETE /partidos/<int:partido_id>
-- PUT /propietario/<int:patrido_id>
-- 
-
+- GET-POST /register: Permite registrar nuevos usuarios.
+- GET-POST /login: Permite iniciar una sesión.
+- GET /logout : Permite cerrar una sesión.
+- POST /partidos/crear: Permite crear un nuevo partido en la base de datos.
+- GET /partidos/nuevo: Hace posible acceder al formulario para añadir un nuevo partido.
+- GET /partidos: Permite visualizar todos los partidos cargados en la base de datos.
+- GET /partidos/<int:partido_id>/editar: Permite al usuario administrador acceder al formulario para editar un partido.
+- GET /partidos/<int:partido_id>: Permite obtener un partido existente mediante su id.
+- POST /partidos/<int:partido_id>: Permite actualizar los datos de un partido existente.
+- GET /partidos/<int:partido_id>/eliminar: Permite eliminar un partido de la base de datos.
+- GET /suspendidos: Permite visualizar todos los partidos que han sido suspendidos.
+- GET /suspendidos/<int:partido_id>/reprogramar: Accede al formulario para poder reprogramar un partido.
+- POST /suspendidos/<int:partido_id>/reprogramar: Crea un nuevo partido en la base de datos, reprogramando alguno que haya sido suspendido.
+- GET /general: Permite acceder a un apartado con información general sobre partidos.
+- GET /resultados: Lista todos los resultados de partidos ya finalizados
+- GET /resultados/nuevo: Permite acceder al formulario para añadir un nuevo resultado.
+- POST /resultados/crear: Permite añadir nuevos resultados.
+- GET /resultados/<int:id_res>/editar: Permite acceder al formulario para editar un resultado.
+- POST /resultados/<int:id_res>/editar: Permite editar un resultado.
+- GET /resultados/<int:id_res>/eliminar: Permite eliminar un resultado.
+- GET /ver_usuario: Permite ver datos de un determinado usuario
+- GET /ver_usuario/editar: Permite ingresar al formulario para editar los datos del usuario.
+- POST /ver_usuario: Permite cambiar los datos del usuario.
 ---
 
-## Aporte de cada integrante
+## Proyecto académico
 
-### Tomás Caballero
-- Creacion controlador usuario
-- Creacion ruta usuario(ver, editar y actualizar)
-- Creación ver perfil html
-- Creación editar perfil html
-- Creación ver perfil css
-- Creacion editar perfil css
-- Cargar foto de perfil en perfil
-- Validar direccion de correo 
-
-### Uriel Martinez
-- Creación de modelo Usuario.
-- Creación de modelo Administrador.
-- Creación de modelo Cliente.
-- Creación del auth controler (register,login,loguot)
-- Rutas correspodientes al register, login y logout.
-- Creación de aut.html y static css (estructuta y visulización).
-### Serena Vargas
-- Creación modelo equipo
-- Creación modelo estadio
-- Creación modelo partido
-- Carga de carpeta img
-- Base html
-- Partidos html
-- Actualizar partido html
-- Partidos css
-- Base css
-- Partidos controller
-- Estadio controller
-- Partido css
-- Endpoint partido (CRUD)
-- Validaciones al actualiza partido
-
-### Diego Caipe
-- Creación del modelo Resultado.
-- Creación del controlador de Resultados.
-- Creación de las rutas de Resultados.
-- Creación de resultados.html.
-- Creación de agregarResultado.html.
-- Creación de actualizarResultado.html.
-- Creación de resultados.css.
-- Implementación del CRUD de resultados.
-- Validaciones para la carga y actualización de resultados.
-- Implementación de autenticación mediante sesiones.
-- Protección de rutas con login_required.
-- Implementación de control de roles (ADMIN y CLIENTE).
-- Restricción de acceso a funcionalidades exclusivas para administradores.
-
-## Trabajo grupal
-- Configuración de la aplicación
-- Configuración de la base de datos
-- Integración general del proyecto
+Trabajo práctico desarrollado para fines educativos utilizando Flask, SQLAlchemy y MySQL.

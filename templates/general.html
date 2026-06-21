@@ -61,6 +61,8 @@
             <tr>
                 <th>Equipo 1</th>
                 <th></th>
+                <th></th>
+                <th></th>
                 <th>Equipo 2</th>
                 <th>Fecha</th>
                 <th>Hora</th>
@@ -72,16 +74,20 @@
         {% for partido in partidos %}
 
             <tr>
-
+                 
+                <td>{{ partido.nombre_equipo1 }}</td>
+                
                 <td>
                     <img src="{{url_for('static', filename=partido.bandera_equipo1)}}" width="35">
-                    {{ partido.nombre_equipo1 }}
                 </td>
 
                 <td>VS</td>
 
                 <td>
                     <img src="{{url_for('static', filename=partido.bandera_equipo2)}}" width="35">
+                </td>
+
+                <td>
                     {{ partido.nombre_equipo2 }}
                 </td>
 
