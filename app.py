@@ -2,15 +2,10 @@ from flask import Flask
 from models.db import db
 from config.config import DATABASE_CONNECTION_URI
 from routes.partido_route import partido_bp
-<<<<<<< HEAD
-from routes.auth_routes import auth_bp
-from routes.usuario_route import Usuario_bp
-=======
 from routes.resultado_route import resultado_bp
 from routes.auth_routes import auth_bp
 from routes.usuario_route import Usuario_bp
 import os
->>>>>>> 131c0ae2f7893a8052c42a82c09a6e6f8558420d
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
@@ -19,10 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 app.register_blueprint(partido_bp)
-<<<<<<< HEAD
-=======
 app.register_blueprint(resultado_bp)
->>>>>>> 131c0ae2f7893a8052c42a82c09a6e6f8558420d
 app.register_blueprint(auth_bp)
 app.register_blueprint(Usuario_bp)
 
