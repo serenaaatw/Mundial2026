@@ -1,6 +1,7 @@
 from controllers.usuario_controller import *
 from flask import Blueprint, render_template, redirect, request, url_for
 
+
 Usuario_bp = Blueprint("Usuario", __name__)
 
 @Usuario_bp.route("/ver_usuario")

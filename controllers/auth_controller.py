@@ -16,7 +16,7 @@ def register():
 #y validar cantidad de caracteres en la contraseña.
 #importar re
 #importar 
-    usuario_existente=Cliente.query.filter_by(email=email).first()
+    usuario_existente=Usuario.query.filter_by(email=email).first()
     if usuario_existente:
         return "Email ya registrado"
     password_hash=generate_password_hash(password)
