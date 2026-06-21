@@ -1,35 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
-    <title>Login</title>
+    <title>WorldCup Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='auth.css') }}">
 </head>
+
 <body>
-    <h1>Iniciar Sesión</h1>
 
-    <form action="{{ url_for('auth.login') }}" method="POST">
+    <div class="contenedor">
 
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <br><br>
+        <div class="card">
 
-        <label>Contraseña:</label>
-        <input type="password" name="password" required>
-        <br><br>
+            <img
+                src="{{ url_for('static', filename='img/logo.png') }}"
+                class="logo"
+            >
 
-        <button type="submit">
-            Ingresar
-        </button>
+            <h1>Iniciar Sesión</h1>
 
-    </form>
+            <form action="{{ url_for('auth.login_route') }}"
+                  method="POST">
 
-    <br>
+                <label>Usuario o Email</label>
 
-    <a href="{{ url_for('auth.register') }}">
-        Ya tengo cuenta
-    </a>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Usuario o Email"
+                    required
+                >
+
+                <label>Contraseña</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Contraseña"
+                    required
+                >
+
+                <button type="submit">
+                    Iniciar Sesión
+                </button>
+
+            </form>
+
+            <div class="links">
+                ¿No tienes cuenta?
+                <a href="{{ url_for('auth.register_route') }}">
+                    Registrarse
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
-

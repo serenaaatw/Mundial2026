@@ -11,19 +11,19 @@
 {%block content%}
 <div class="perfil-card">
     <img src="{{ url_for('static', filename=user.foto_perfil)}}" alt="Foto" width="200"> 
-    
+
     <h2>
         {{ user.nombre }}
     </h2>
     <p>
-        {{ user.email }}
+        {{ user.email}}
     </p>
     <a href="{{ url_for('Usuario.editarformulario') }}">
         <button class="btn-editar">
             Editar perfil
         </button>
     </a>
-    <a href="{{ url_for('auth.logout') }}">
+    <a href="{{ url_for('auth.logout_route') }}">
         <button class="btn-cerrar">
              Cerrar Sesión
         </button>

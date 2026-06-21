@@ -1,8 +1,10 @@
 from models.usuario import Usuario
 from models.db import db
+from datetime import date
+
 class Administrador(Usuario):
     #agregar atributo de fecha de alta del administrador
-    fecha_alta=db.Column(db.Date, nullable=False)
+    fecha_alta = db.Column(db.Date, default=date.today)
     #polomorfismo de herencia para identificar en el programa que objeto crear teniendo en cienta el atributo rol
     __mapper_args__ = {
         "polymorphic_identity": "ADMIN"

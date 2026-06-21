@@ -1,14 +1,15 @@
+/* Fondo */
 body{
-
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-    background-color:#f4f4f4;
-
     margin:0;
-}
-/*principal*/
-.auth-container{
+    padding:0;
 
+    font-family:'Segoe UI', sans-serif;
+
+    background:#edf1f4;
+}
+
+/* Contenedor */
+.contenedor{
     display:flex;
 
     justify-content:center;
@@ -17,108 +18,136 @@ body{
 
     min-height:100vh;
 }
-/*tarjeta formulario*/
-.auth-card{
+
+/* Tarjeta */
+.card{
+    width:420px;
 
     background:white;
 
-    width:90%;
+    padding:40px;
 
-    max-width:450px;
+    border-radius:18px;
 
-    padding:30px;
-
-    border-radius:12px;
-
-    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
 }
-.auth-card h1{
 
+/* Logo */
+.logo{
+    width:230px;
+
+    display:block;
+
+    margin:0 auto 20px auto;
+}
+
+/* Título */
+.card h1{
     text-align:center;
 
-    color:#001f3f;
+    color:#001F3F;
 
-    margin-bottom:25px;
+    font-size:42px;
+
+    margin-bottom:30px;
 }
-/*formulario*/
-.auth-card label{
 
+/* Labels */
+.card label{
     display:block;
 
-    margin-bottom:5px;
+    color:#222;
 
-    font-weight:600;
-
-    color:#333;
-}
-.auth-card label{
-
-    display:block;
-
-    margin-bottom:5px;
-
-    font-weight:600;
-
-    color:#333;
-}
-.auth-card input:focus{
-
-    outline:none;
-
-    border-color:#001f3f;
-}
-/*boton*/
-.auth-card button{
-
-    width:100%;
-
-    padding:12px;
-
-    background:#001f3f;
-
-    color:white;
-
-    border:none;
-
-    border-radius:6px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    transition:0.3s;
-}
-.auth-card button:hover{
-
-    background:#003366;
-}
-/*links*/
-.auth-card a{
-
-    display:block;
-
-    text-align:center;
+    margin-bottom:8px;
 
     margin-top:15px;
 
+    font-size:18px;
+}
+
+/* Inputs */
+.card input{
+    width:100%;
+
+    padding:14px;
+
+    box-sizing:border-box;
+
+    border:1px solid #b8b8b8;
+
+    border-radius:8px;
+
+    font-size:18px;
+
+    margin-bottom:15px;
+}
+
+.card input:focus{
+    outline:none;
+
+    border:2px solid #75C2FF;
+}
+
+/* Botón */
+.card button{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#001F3F;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.card button:hover{
+    background:#003b75;
+}
+
+/* Links */
+.links{
+    text-align:center;
+
+    margin-top:25px;
+
+    font-size:18px;
+}
+
+.links a{
+    color:#75C2FF;
+
     text-decoration:none;
 
-    color:#001f3f;
-
-    font-weight:600;
+    font-weight:bold;
 }
-.auth-card a:hover{
 
-    text-decoration:underline;
+.links a:hover{
+    color:#001F3F;
 }
-/*responsive*/
-@media(max-width:768px){
 
-    .auth-card{
+/* Responsive */
+@media(max-width:500px){
 
-        width:95%;
+    .card{
+        width:90%;
 
-        padding:20px;
+        padding:25px;
     }
 
+    .logo{
+        width:180px;
+    }
+
+    .card h1{
+        font-size:32px;
+    }
 }
