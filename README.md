@@ -9,7 +9,9 @@
 ---
 
 ## Descripción breve
-    WorldCup Manager es una aplicación web desarrollada con Flask y SQLAlchemy que permite gestionar los partidos del Mundial 2026. Los usuarios pueden consultar próximos encuentros, resultados, partidos suspendidos e información general relacionada con la competición. Además, los administradores disponen de funcionalidades CRUD para la gestión completa de los datos.
+
+WorldCup Manager es una aplicación web desarrollada con Flask y SQLAlchemy que permite gestionar los partidos del Mundial 2026. Los usuarios pueden consultar próximos encuentros, resultados, partidos suspendidos e información general relacionada con la competición. Además, los administradores disponen de funcionalidades CRUD para la gestión completa de los datos.
+    
 ---
 
 ## Configuración de la base de datos
@@ -72,6 +74,7 @@ WHERE email = 'correo@ejemplo.com';
 ## Endpoints implementados
 
 - GET-POST /register: Permite registrar nuevos usuarios.
+  
 - GET-POST /login: Permite iniciar una sesión.
 - GET /logout : Permite cerrar una sesión.
 - POST /partidos/crear: Permite crear un nuevo partido en la base de datos.
