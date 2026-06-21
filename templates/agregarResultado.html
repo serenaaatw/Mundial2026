@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='agregarResultado.css') }}">
+{% endblock %}
+
+{% block title %}
+<title>Agregar Resultado</title>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="titulo">Agregar Resultado</h1>
+
+<a href="{{ url_for('resultado.obtenerResultados') }}" class="btn-volver">
+    Volver
+</a>
+{% if error %}
+    <div class="error">{{ error }}</div>
+{% endif %}
+<form class="form-resultado" action="{{ url_for('resultado.crearResultado') }}" method="POST">
+
+    <label>Partido:</label>
+    <select name="partido_id" required>
+        <option value="">Seleccione un partido</option>
+
+        {% for partido in partidos %}
+            <option value="{{ partido.id }}">{{partido.id_partido}} - {{ partido.nombre_equipo1 }} vs {{ partido.nombre_equipo2 }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Goles Equipo 1:</label>
+    <input type="number" name="goles_equipo1" required min="0">
+
+    <label>Goles Equipo 2:</label>
+    <input type="number" name="goles_equipo2" required min="0">
+
+    <button type="submit">Guardar Resultado</button>
+
+</form>
+
+{% endblock %}

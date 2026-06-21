@@ -16,19 +16,19 @@
         </div>
     {% endif%}
     <form action = "{{url_for('Usuario.actualizarperfil')}}"method=post enctype="multipart/form-data">
-    <label for = "nombre_usuario">Nombre</label>
+    <label for = "nombre">Nombre</label>
     <input 
         type="text"
-        id = "nombre_usuario"
-        name = "nombre_usuario"
-        value = "{{user.nombre_usuario}}"
+        id = "nombre"
+        name = "nombre"
+        value = "{{user.nombre}}"
     >
-    <label for = "mail_usuario">Email</label>
+    <label for = "email">Email</label>
     <input 
         type="text"
-        id = "mail_usuario"
-        name = "mail_usuario"
-        value = "{{user.mail_usuario}}"
+        id = "email"
+        name = "email"
+        value = "{{user.email}}"
     >
     <label for = "foto_perfil">Foto de perfil</label>
     <input 

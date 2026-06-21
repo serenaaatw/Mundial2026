@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='resultados.css') }}">
+{% endblock %}
+
+{% block title %}
+<title>Resultados</title>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="titulo">Resultados</h1>
+
+<a href="{{ url_for('partido.obtenerPartidos') }}" class="btn-volver">
+    Volver a Partidos
+</a>
+<!-- cuando implemente el login, agregar un if para mostrar el boton de agregar resultado solo a los admin -->
+<a href="{{ url_for('resultado.formularioCrear') }}" class="btn-agregar">
+    Agregar Resultado
+</a>
+{% if erroreditar %}
+    <div class="error">{{ erroreditar }}</div>
+{% endif %}
+<div class="tabla-container">
+<table class="tabla-resultados">
+
+    <caption>RESULTADOS DE LOS PARTIDOS</caption>
+
+    <tr>
+        <th>Equipo 1</th>
+        <th>Bandera</th>
+        <th>Goles</th>
+
+        <th>Equipo 2</th>
+        <th>Bandera</th>
+        <th>Goles</th>
+
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Estadio</th>
+        <th>Etapa</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for resultado in resultados %}
+
+    <tr>
+        <td>{{ resultado.nombre_equipo1 }}</td>
+        <td>
+            <img src="{{ url_for('static', filename=resultado.bandera_equipo1) }}" width="30">
+        </td>
+        <td>{{ resultado.goles_equipo1 }}</td>
+
+        <td>{{ resultado.nombre_equipo2 }}</td>
+        <td>
+            <img src="{{ url_for('static', filename=resultado.bandera_equipo2) }}" width="30">
+        </td>
+        <td>{{ resultado.goles_equipo2 }}</td>
+
+        <td>{{ resultado.fecha }}</td>
+        <td>{{ resultado.hora }}</td>
+        <td>{{ resultado.nombre_estadio }}</td>
+        <td>{{ resultado.etapa }}</td>
+        <td>
+            <a class="btn-editar" href="{{ url_for('resultado.formularioEditar', id_res=resultado.id_res) }}">
+              Editar
+            </a>
+            <a class="btn-eliminar" href="{{ url_for('resultado.eliminarResultado', id_res=resultado.id_res) }}">
+              Eliminar
+            </a>
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

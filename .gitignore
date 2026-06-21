@@ -1,5 +1,6 @@
-envmundial
+venv
 .env
-./pycache
+__pycache__
 *.pyc
+./pycache
 Tomas
