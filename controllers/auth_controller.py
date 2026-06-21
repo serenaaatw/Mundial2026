@@ -53,7 +53,7 @@ def register():
         )
 
     except ValueError as error:
-        return f"Error: {error}"
+        return render_template("register.html", error=str(error))
 
 #Login
 def login():
